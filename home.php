@@ -7,7 +7,7 @@ function h($str) {
 date_default_timezone_set("Asia/Tokyo");
 $pdo = new PDO("sqlite:SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-$st = $pdo->query("select * from information order by id desc");
+$st = $pdo->query("SELECT * FROM information ORDER BY id DESC LIMIT 10"); // 最新の10件のみ取得
 $data = $st->fetchAll();
 ?>
 <!DOCTYPE html>
@@ -45,9 +45,11 @@ $data = $st->fetchAll();
     print '<p>'.h($info["content"]).'</p>';
     print '<p>最終更新日:'.h($info["updated_at"]);
     print '</div>';
-
   }
   ?>
+  <p>
+    <a href="show_information.php">お知らせ一覧</a>
+  </p>
   <p>
     <a href="post.php">問題投稿</a>
   </p>
