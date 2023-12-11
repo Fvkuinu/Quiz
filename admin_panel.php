@@ -24,38 +24,23 @@ date_default_timezone_set("Asia/Tokyo");
 </head>
 
 <body>
-
+    <p><a href="home.php">通常のホーム</a></p>
+    <p><a href="start.php">クイズを解く</a></p>
+    <p><a href="post.php">投稿する</a></p>
     <?php
-    // ページネーション設定
-    $itemsPerPage = 10; // 1ページあたりのアイテム数
-    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-    $offset = ($page - 1) * $itemsPerPage;
-    
-    // データを取得
-    $pdo = new PDO("sqlite:SQL/quiz.sqlite");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-    $stmt = $pdo->prepare("SELECT * FROM information LIMIT :offset, :itemsPerPage");
-    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
-    $stmt->execute();
-    $informations = $stmt->fetchAll();
-
-    // データの表示
-    foreach ($informations as $info) {
-        echo "<p>{$info['title']}</p>";
-        echo "<div>{$info['content']}</div>";
-        // 編集・削除リンク（編集・削除機能は別途実装が必要）
-        echo "<a href='edit.php?id={$info['id']}'>Edit</a> | <a href='delete.php?id={$info['id']}'>Delete</a>";
-    }
-
-    // ページネーションリンク
-    $totalItems = $pdo->query("SELECT COUNT(*) FROM information")->fetchColumn();
-    $totalPages = ceil($totalItems / $itemsPerPage);
-
-    for ($i = 1; $i <= $totalPages; $i++) {
-        echo "<a href='?page=$i'>$i</a> ";
+    if (isset($_SESSION["user"])) {
+        //ユーザ認証済みのときの処理
+        print '<p><a href="profile.php">' . h($_SESSION["user"]["name"]) . '</a></p>';
+        print '<p>[<a href="logout.php">ログアウト</a>]</p>';
+    } else {
+        //未認証のときの処理
+        print '<p>[<a href="login_form.php">ログイン</a>]</p>';
     }
     ?>
+    
+    <h2>管理画面</h2>
+    <p><a href="edit_information.php">お知らせを編集する</a></p>
+    <p><a href="edit_quiz.php">クイズを編集する</a></p>
 
 
 

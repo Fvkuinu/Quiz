@@ -39,9 +39,9 @@ date_default_timezone_set("Asia/Tokyo");
     <p>
     <form action="post_submit.php" method="get">
         問題文<br>
-        <textarea name="question" rows="10" cols="40"></textarea><br>
+        <textarea name="question" rows="10" cols="40" required></textarea><br>
         答え<br>
-        <input type="text" name="answer" size="40"><br>
+        <input type="text" name="answer" size="40" required><br>
 
         <input type="submit" value="送信">
     </form>
