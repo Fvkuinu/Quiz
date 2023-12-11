@@ -4,7 +4,7 @@ session_start();
 function h($str) {
   return htmlspecialchars($str, ENT_QUOTES, "UTF-8");
 }
-
+date_default_timezone_set("Asia/Tokyo");
 $pdo = new PDO("sqlite:SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 $st = $pdo->query("select * from information order by id desc");
@@ -26,9 +26,11 @@ $data = $st->fetchAll();
   <p><a href="post.php">投稿する</a></p>
 
   <?php
+  
   if(isset($_SESSION["user"])) {
     //ユーザ認証済みのときの処理
-    print '<p>'.h($_SESSION["user"]["name"]).' [<a href="logout.php">ログアウト</a>]</p>';
+    print '<p><a href="profile.php?userId='.$_SESSION["user"]["id"].'">'.h($_SESSION["user"]["name"]).'</a></p>';
+    print '<p>[<a href="logout.php">ログアウト</a>]</p>';
   } else {
     //未認証のときの処理
     print '<p>[<a href="login_form.php">ログイン</a>]</p>';

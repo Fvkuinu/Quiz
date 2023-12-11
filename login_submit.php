@@ -2,6 +2,7 @@
 
 
 session_start();
+date_default_timezone_set("Asia/Tokyo");
 if (isset($_GET["username"]) && isset($_GET["passwd"])) {
     $username = $_GET["username"];
     $passwd = $_GET["passwd"];
@@ -16,6 +17,11 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
         // 等しければ
         $_SESSION["user"] = ["id" => $user_on_db["id"],"name" => $username];
         $result = "ようこそ" . $username . "さん。ログインに成功しました。";
+        // ユーザーが管理者の場合、管理画面にリダイレクト
+        if ($user_on_db["id"]==1) {
+            header("Location: admin_panel.php");
+            exit;
+        }
     } else {
         // そうでなければ
         $result = "パスワードが違います。";
@@ -32,7 +38,6 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
     <meta charset="utf-8">
     <title>Login success</title>
     <link rel="stylesheet" href="CSS/style.css">
-    <script src="JS/main.js"></script>
 </head>
 
 <body>

@@ -1,0 +1,27 @@
+ファイル名：quiz.sqlite
+
+
+テーブルと、カラム名
+
+テーブル名：user
+カラム名：id,username,password
+※初期値として、[admin,1234]（管理者）[Alice,30]が入ってる。
+
+テーブル名：question
+カラム名：id,question,answer,writer_id
+
+テーブル名：information
+カラム名：id,title,content,created_at,updated_at
+
+テーブル名：user_answer
+カラム名：id,user_id,question_id,answer,answered_at,is_correct
+
+
+
+コピペ用コマンド
+create table user(id integer primary key autoincrement, username text,password text);
+insert into user(id,username,password) values(1,'admin','1234');
+insert into user(id,username,password) values(2,'Alice','30');
+
+create table user_answer(id integer primary key autoincrement,user_id int,question_id int,answer text,answered_at text,is_correct boolean);
+insert into user_answer(id,user_id,question_id,answer,answered_at,is_correct) values(1,2,1,'100','2023-12-10 00:00:00',0);
