@@ -41,6 +41,7 @@ date_default_timezone_set("Asia/Tokyo");
     <h2>管理画面</h2>
     <p><a href="edit_information.php">お知らせを編集する</a></p>
     <p><a href="edit_quiz.php">クイズを編集する</a></p>
+    <p><a href="edit_contest.php">コンテストを編集する</a></p>
 
 
 
