@@ -27,3 +27,15 @@ create table user_answer(id integer primary key autoincrement,user_id int,questi
 insert into user_answer(id,user_id,question_id,answer,answered_at,is_correct) values(1,2,1,'100','2023-12-10 00:00:00',0);
 
 insert into information(id,title,content,created_at,updated_at) values(2,'サービス開始！','クイズを提供するサービス開始しました。','2023-12-10 00:00:00','2023-12-10 00:00:00');
+
+create table contest(id integer primary key autoincrement,name text, description text,start_time text, end_time text,created_at text, updated_at text);
+insert into contest(id ,name , description ,start_time , end_time ,created_at , updated_at ) values(1,'第一回コンテスト','第一回コンテストだよ','2018-10-21 00:00:00', '2018-10-21 00:00:00','2018-10-21 00:00:00','2018-10-21 00:00:00');
+
+create table contest_answer(id integer primary key autoincrement,contest_id int, user_id int, question_id int,answer_text text, submitted_at text, is_correct boolean);
+insert into contest_answer(id ,contest_id , user_id , question_id,answer_text, submitted_at, is_correct) values(1,1,2,1,'さかな','2018-10-21 00:00:00', 0);
+
+create table contest_question(id integer primary key autoincrement, contest_id int, question_order int, question_title text, html_file_name text, point int, correct_answer text,  created_at text,updated_at text);
+insert into contest_question(id , contest_id , question_title , html_file_name ,point,correct_answer, created_at , updated_at ) values(1,1,'海とか川にいるやつら','contest_1.html',100,'さかな','2018-10-21 00:00:00','2018-10-21 00:00:00');
+UPDATE contest_question
+SET html_file_name = 'contest1_1.html'
+WHERE question_id = 1;
