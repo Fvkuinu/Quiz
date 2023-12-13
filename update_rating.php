@@ -1,5 +1,5 @@
 <?php
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:C:\MAMP\htdocs\Quiz\SQL\quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 $contest_id = $argv[1]; // コマンドライン引数からの場合
