@@ -1,6 +1,4 @@
-<?php
-include 'contest_submit_process.php';
-?>
+
 <html>
 
 <head>
@@ -15,7 +13,7 @@ include 'contest_submit_process.php';
             <?php echo h($message); ?>
         </p>
     <?php endif; ?>
-    <form method='post' action=''>
+    <form method='get' action='contest_submit.php'>
         <input type='hidden' name='contest_id' value='1'>
         <input type='hidden' name='question_order' value='2'>
         <p><label for='answer'>あなたの回答:</label></p>

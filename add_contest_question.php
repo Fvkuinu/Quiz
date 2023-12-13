@@ -21,7 +21,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 include 'database_config.php'; // データベース設定をインクルード
 
-$contest_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$contest_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 if ($contest_id <= 0) {
     die("無効なコンテストIDです。");
 }
@@ -58,26 +58,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $contestData = $contestStmt->fetch(PDO::FETCH_ASSOC);
         $contestName = $contestData['name'];
         // コンテスト専用ディレクトリの作成
-        $contestDirName = $baseDir . "/" . $contest_id . "_" .  $contestName;
+        $contestDirName = $baseDir . "/" . $contest_id . "_" . $contestName;
         if (!file_exists($contestDirName)) {
             mkdir($contestDirName);
         }
 
-        // HTMLファイルの保存パス
-        $htmlFilePath = $contestDirName . "/" . "question_" . $question_order . ".html";
-        $htmlContent = "<html>\n<head>\n<title>" . htmlspecialchars($question_title) . "</title>\n</head>\n<body>\n";
-        $htmlContent .= "<h1>" . htmlspecialchars($question_title) . "</h1>\n";
-        $htmlContent .= "<form method='post' action='submit_contest_answer.php'>\n";
-        $htmlContent .= "<input type=\"text\" name=\"answer\" />";
-        $htmlContent .= "<input type='submit' value='回答を送信'>\n";
-        $htmlContent .= "</form>\n";
-        $htmlContent .= "</body>\n</html>";
+        // PHPファイルの保存パス
+        $phpFilePath = $contestDirName . "/" . "question_" . $question_order . ".php";
+        $phpContent .= "<html>\n<head>\n<title>" . h($question_title) . "</title>\n</head>\n<body>\n";
+        $phpContent .= "<?php\ninclude 'header.php';\n?>\n";
+        $phpContent .= "<h1>" . h($question_title) . "</h1>\n";
+        $phpContent .= "<form method='get' action='contest_submit.php'>\n";
+        $phpContent .= "<input type='hidden' name='contest_id' value='" . $contest_id . "'>\n";
+        $phpContent .= "<input type='hidden' name='question_order' value='" . $question_order . "'>\n";
+        $phpContent .= "<p><label for='answer'>あなたの回答:</label></p>\n";
+        $phpContent .= "<p><input type='text' name='answer' id='answer' required></p>\n";
+        $phpContent .= "<p><input type='submit' value='回答を送信'></p>\n";
+        $phpContent .= "</form>\n";
+        $phpContent .= "</body>\n</html>";
 
-        // HTMLファイルの生成
-        file_put_contents($htmlFilePath, $htmlContent);
+        // PHPファイルの生成
+        file_put_contents($phpFilePath, $phpContent);
 
         echo "問題が追加され、HTMLファイルが生成されました。";
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo "問題の追加に失敗しました: " . $e->getMessage();
     }
 }
@@ -85,11 +89,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>問題追加</title>
 </head>
+
 <body>
-    <h2>コンテストへの問題追加 - コンテストID: <?php echo $contest_id; ?></h2>
+    <h2>コンテストへの問題追加 - コンテストID:
+        <?php echo $contest_id; ?>
+    </h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . '?id=' . $contest_id); ?>" method="post">
         <p>
             <label for="question_order">問題の順番:</label>
@@ -112,4 +120,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
     </form>
 </body>
+
 </html>

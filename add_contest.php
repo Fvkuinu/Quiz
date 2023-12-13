@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // コンテスト専用のディレクトリを作成
-        $contestDir = $baseDir . "/id_" . $contest_id . "_" . preg_replace("/[^A-Za-z0-9]/", '', $name);
+        $contestDir = $baseDir . "/" . $contest_id . "_" . $name;
         if (!file_exists($contestDir)) {
             mkdir($contestDir);
         }

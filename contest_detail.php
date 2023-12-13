@@ -43,7 +43,7 @@ try {
 
 <body>
     <h1>
-        <?php echo htmlspecialchars($contest['name']); ?>
+        <?php echo h($contest['name']); ?>
     </h1>
     <h2>問題一覧</h2>
     <ul>
@@ -58,10 +58,10 @@ try {
             // コンテストが開始されている場合のみリンクを表示
             if ($currentTime >= $startTime) {
                 $link = "contest_question.php?contest_id={$contest_id}&question_order={$question['question_order']}";
-                echo "<li><a href='{$link}'>" . htmlspecialchars($question['question_title']) . "</a></li>";
+                echo "<li><a href='{$link}'>" . h($question['question_title']) . "</a></li>";
             } else {
                 // コンテストが開始していない場合は問題名のみ表示
-                echo "<li>" . htmlspecialchars($question['question_title']) . "</li>";
+                echo "<li>" . h($question['question_title']) . "</li>";
             }
         }
         ?>
