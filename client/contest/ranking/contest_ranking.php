@@ -3,7 +3,7 @@ session_start();
 
 // ユーザーがログインしていなければログインページへリダイレクト
 if (!isset($_SESSION["user"])) {
-    header("Location: ../../../login_form.php");
+    header("Location: ../../../login/login_form.html");
     exit;
 }
 
@@ -59,10 +59,12 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
+    <meta charset="utf-8">
     <title>コンテスト問題</title>
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
@@ -85,7 +87,7 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($ranking as $row) {
         echo "<tr>";
         echo "<td>" . h($row['rank']) . "</td>";
-        echo "<td><a href='../../../clientprofile.php?userId=" . h($row['user_id']) . "'>". h($row['username']) . "</a></td>";
+        echo "<td><a href='../../client/profile/profile.php?userId=" . h($row['user_id']) . "'>". h($row['username']) . "</a></td>";
 
         foreach ($questions as $question) {
             $scoreQuery = "SELECT IFNULL(MAX(cq.point), 0) as score

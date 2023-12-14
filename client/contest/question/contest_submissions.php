@@ -4,7 +4,7 @@ session_start();
 
 // ユーザーがログインしていなければログインページへリダイレクト
 if (!isset($_SESSION["user"])) {
-    header("Location: ../../../login_form.php");
+    header("Location: ../../../login_form.html");
     exit;
 }
 function h($str)
@@ -48,6 +48,7 @@ try {
 
 <head>
     <title>提出結果</title>
+    <link rel="stylesheet" href="../../../CSS/style.css">
 </head>
 
 <body>

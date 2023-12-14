@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["user"])) {
-    header("Location: ../../../login/login_form.php");
+    header("Location: ../../../login/login_form.html");
     exit;
 }
 
@@ -39,6 +39,7 @@ try {
 
 <head>
     <title>コンテスト問題</title>
+    <link rel="stylesheet" href="../../../CSS/style.css">
 </head>
 
 <body>

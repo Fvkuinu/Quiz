@@ -14,17 +14,17 @@ function h($str)
 <head>
     <meta charset="utf-8">
     <title>プロフィール</title>
-    <link rel="stylesheet" href="/Quiz/CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
-    <?php include 'header.php' ?>
+    <?php include '../../header.php' ?>
 
     <?php
     if(isset($_GET['userId'])){
         $userId = $_GET['userId'];
         // ユーザー情報の取得
-        $pdo = new PDO("sqlite:SQL/quiz.sqlite");
+        $pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
         $stmtUser = $pdo->prepare("SELECT username FROM user WHERE id = ?");
         $stmtUser->execute([$userId]);
         $user = $stmtUser->fetch();

@@ -7,7 +7,7 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
     $username = $_GET["username"];
     $passwd = $_GET["passwd"];
     //認証処理
-    $pdo = new PDO("sqlite:SQL/quiz.sqlite");
+    $pdo = new PDO("sqlite:../SQL/quiz.sqlite");
     $st = $pdo->prepare("select * from user where username=?");
     $st->execute(array($username));
     $user_on_db = $st->fetch();

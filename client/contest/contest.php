@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.html");
     exit;
 }
 
@@ -12,7 +12,7 @@ function h($str)
 }
 date_default_timezone_set("Asia/Tokyo");
 // データベース接続情報
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 // ページネーション変数
@@ -37,19 +37,21 @@ try {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 
 <head>
+    <meta charset="utf-8">
     <title>コンテスト一覧</title>
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    <?php include('../../header.php'); ?>
     <h1>コンテスト一覧</h1>
     <ul>
         <?php foreach ($contests as $contest): ?>
             <li>
-                <a href="contest_detail.php?contest_id=<?php echo h($contest['id']); ?>">
+                <a href="./detail/contest_detail.php?contest_id=<?php echo h($contest['id']); ?>">
                     <?php echo h($contest['name']); ?>
                 </a>
                 <br>

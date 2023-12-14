@@ -11,7 +11,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
 
 // データベース接続情報
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 // 総ユーザー数を取得
@@ -24,7 +24,7 @@ $stmt->bindParam(':perPage', $perPage, PDO::PARAM_INT);
 $stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-include('header.php');
+include('../../header.php');
 
 $rank = 1 + $start;
 $prev_rating = null;
@@ -42,7 +42,7 @@ foreach ($users as $row) {
 
     echo "<tr>";
     echo "<td>" . ($rank-1) . "</td>"; // 順位
-    echo "<td><a href='profile.php?userId=" . $row['id'] . "'>" . h($row['username']) . "</a></td>"; // ユーザーネーム
+    echo "<td><a href='../profile/profile.php?userId=" . $row['id'] . "'>" . h($row['username']) . "</a></td>"; // ユーザーネーム
     echo "<td>" . $row['rating'] . "</td>"; // Rating
     echo "</tr>";
 

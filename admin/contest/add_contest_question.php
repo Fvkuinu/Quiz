@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
     
             // contest_question ディレクトリの確認と作成
-            $baseDir = "contest_question";
+            $baseDir = "../../contest_question";
             if (!file_exists($baseDir)) {
                 mkdir($baseDir);
             }
@@ -74,10 +74,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (!file_exists($contestDirName)) {
                 mkdir($contestDirName);
             }
+            $contestQuestionDirName = $contestDirName. "/question";
+            if (!file_exists($contestQuestionDirName)) {
+                mkdir($contestQuestionDirName);
+            } 
+            $contestAnswerDirName = $contestDirName . "/answer";
+            if (!file_exists($contestAnswerDirName)) {
+                mkdir($contestAnswerDirName);
+            }
     
             // 問題のPHPファイルの保存パス
-            $phpFilePath = $contestDirName . "/" . "question_" . $question_order . ".php";
-            $phpContent .= "<html>\n<head>\n<title>" . h($question_title) . "</title>\n</head>\n<body>\n";
+            $phpFilePath = $contestQuestionDirName . "/" . "question_" . $question_order . ".html";
+            $phpContent .= "<html>\n<head>\n<title>" . h($question_title) . "</title>\n<link rel=\"stylesheet\" href=\"../../../CSS/style.css\">\n</head>\n<body>\n";
             $phpContent .= "<h1>" . h($question_title) . "</h1>\n";
             $phpContent .= "<form method='get' action='contest_submit.php'>\n";
             $phpContent .= "<input type='hidden' name='contest_id' value='" . $contest_id . "'>\n";
@@ -93,8 +101,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     
             // 解説のPHPファイルの保存パス
-            $phpFilePath = $contestDirName . "/" . "explanation_" . $question_order . ".php";
-            $phpContent = "<html>\n<head>\n<title>" . h($question_title) . "</title>\n</head>\n<body>\n";
+            $phpFilePath = $contestAnswerDirName . "/" . "explanation_" . $question_order . ".html";
+            $phpContent = "<html>\n<head>\n<title>" . h($question_title) . "</title>\n<link rel=\"stylesheet\" href=\"../../../CSS/style.css\">\n</head>\n<body>\n";
             $phpContent .= "<h1>" . h($question_title) . "</h1>\n";
             $phpContent .= "<!-- ここに解説を書く -->\n";
             $phpContent .= "</body>\n</html>";

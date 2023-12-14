@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $contest_id = $pdo->lastInsertId();
 
         // contest_question ディレクトリを確認し、必要に応じて作成
-        $baseDir = "/contest_question";
+        $baseDir = "../../contest_question";
         if (!file_exists($baseDir)) {
             mkdir($baseDir);
         }
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         // 解説のPHPファイルの保存パス
-        $phpFilePath = $contestDir . "/detail.php";
+        $phpFilePath = $contestDir . "/detail.html";
         $phpContent .= "<html>\n<head>\n<title>" . h($description) . "</title>\n</head>\n<body>\n";
         $phpContent .= "<h1>" . h($description) . "</h1>\n";
         $phpContent .= "<!-- ここにコンテスト詳細を書く -->\n";
