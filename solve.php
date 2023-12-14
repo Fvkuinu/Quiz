@@ -26,7 +26,13 @@ if (isset($_SESSION["user"])) {
 
 } else {
     //未認証のときの処理
-    //print '<p>[<a href="login_form.php">ログイン</a>]</p>';
+    // ユーザーがまだ解いていない問題をランダムに一つ取得するSQLクエリ
+    $sql = "SELECT * FROM question ORDER BY RANDOM() LIMIT 1";
+    $pdo = new PDO("sqlite:SQL/quiz.sqlite");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+    $st = $pdo->prepare($sql);
+    $st->execute();
+    $question = $st->fetch();
 }
 ?>
 <!DOCTYPE html>
@@ -39,22 +45,8 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body>
-    <p><a href="home.php">ホーム</a></p>
-    <p><a href="start.php">クイズを解く</a></p>
-    <p><a href="post.php">投稿する</a></p>
-    <?php
-    if (isset($_SESSION["user"])) {
-        //ユーザ認証済みのときの処理
-        print '<p><a href="profile.php">' . h($_SESSION["user"]["name"]) . '</a></p>';
-        print '<p>[<a href="logout.php">ログアウト</a>]</p>';
-    } else {
-        //未認証のときの処理
-        print '<p>[<a href="login_form.php">ログイン</a>]</p>';
-    }
+    <?php include('header.php'); ?>
 
-    
-    ?>
-    
     <!-- 残り時間を表示する -->
     <p id="remainingTime">残り時間：30秒</p>
     <?php
@@ -64,14 +56,14 @@ if (isset($_SESSION["user"])) {
         echo "<p>Question: " . $question['question'];
         echo '<form id="quizForm" action="answer.php" method="get">
         <input type="text" name="answer" />
-        <input type="hidden" name="questionId" value='.$question['id'].'>
+        <input type="hidden" name="questionId" value=' . $question['id'] . '>
         <button type="submit">回答を送信</button>
         </form>';
         echo '<script src="JS/quiz_timer.js"></script>';
     } else {
         // 問題が見つからなかった場合の処理
         echo "All questions have been answered.";
-        
+
     }
     ?>
 

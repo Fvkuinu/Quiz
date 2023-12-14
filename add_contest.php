@@ -4,7 +4,7 @@ if (!isset($_SESSION["user"])) {
     header("Location: login_form.php");
     exit;
 }
-if (!$_SESSION["user"]["id"] == 1) {
+if ($_SESSION["user"]["id"] != 1) {
     header("Location: home.php");
     exit;
 }
@@ -53,6 +53,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mkdir($contestDir);
         }
 
+
+
+        // 解説のPHPファイルの保存パス
+        $phpFilePath = $contestDir . "/detail.php";
+        $phpContent .= "<html>\n<head>\n<title>" . h($description) . "</title>\n</head>\n<body>\n";
+        $phpContent .= "<h1>" . h($description) . "</h1>\n";
+        $phpContent .= "<!-- ここにコンテスト詳細を書く -->\n";
+        $phpContent .= "</body>\n</html>";
+        
+        // PHPファイルの生成
+        file_put_contents($phpFilePath, $phpContent);
         // タスクスケジューラの設定
         // コンテスト終了後のタスクスケジューリング
         $contest_end_time = strtotime($end_time); //+ 10 * 60; // コンテスト終了時間 + 10分
@@ -92,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <p><a href="admin_panel.php">adminトップへ</a></p>
+    <?php include 'admin_header.php' ?>
     <form action="<?php echo h($_SERVER["PHP_SELF"]); ?>" method="post">
         <p>
             <label for="name">コンテスト名:</label>

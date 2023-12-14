@@ -1,11 +1,10 @@
-
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
     header("Location: login_form.php");
     exit;
 }
-if (!$_SESSION["user"]["id"] == 1) {
+if ($_SESSION["user"]["id"] != 1) {
     header("Location: home.php");
     exit;
 }

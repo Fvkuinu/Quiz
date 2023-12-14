@@ -4,7 +4,7 @@ if (!isset($_SESSION["user"])) {
     header("Location: login_form.php");
     exit;
 }
-if (!$_SESSION["user"]["id"] == 1) {
+if ($_SESSION["user"]["id"] != 1) {
     header("Location: home.php");
     exit;
 }
@@ -25,7 +25,7 @@ date_default_timezone_set("Asia/Tokyo");
 
 <body>
     <p><a href="admin_panel.php">adminトップへ</a></p>
-    <p><a href="add_contest.php">add</a></p>
+    <p><a href="add_contest.php">Add Contest</a></p>
     <?php
     // データベース接続情報
     $pdo = new PDO("sqlite:SQL/quiz.sqlite");
@@ -54,7 +54,8 @@ date_default_timezone_set("Asia/Tokyo");
             // 編集と削除と問題作成リンク
             echo "<a href='modify_contest.php?id=" . $contest['id'] . "'>Modify</a> | ";
             echo "<a href='delete_contest.php?id={$contest['id']}' onclick='return confirmDelete()'>Delete</a> | ";
-            echo "<a href='add_contest_question.php?id=" . $contest['id'] . "'>Add Question</a>";
+            echo "<a href='add_contest_question.php?id=" . $contest['id'] . "'>Add Question</a> | ";
+            echo "<a href='edit_contest_question.php?id=" . $contest['id'] . "'>Edit Question</a>";
             echo "</div>\n";
         }
 

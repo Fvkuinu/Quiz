@@ -4,7 +4,7 @@ if (!isset($_SESSION["user"])) {
     header("Location: login_form.php");
     exit;
 }
-if (!$_SESSION["user"]["id"] == 1) {
+if ($_SESSION["user"]["id"] != 1) {
     header("Location: home.php");
     exit;
 }
@@ -24,20 +24,8 @@ date_default_timezone_set("Asia/Tokyo");
 </head>
 
 <body>
-    <p><a href="home.php">通常のホーム</a></p>
-    <p><a href="start.php">クイズを解く</a></p>
-    <p><a href="post.php">投稿する</a></p>
-    <?php
-    if (isset($_SESSION["user"])) {
-        //ユーザ認証済みのときの処理
-        print '<p><a href="profile.php">' . h($_SESSION["user"]["name"]) . '</a></p>';
-        print '<p>[<a href="logout.php">ログアウト</a>]</p>';
-    } else {
-        //未認証のときの処理
-        print '<p>[<a href="login_form.php">ログイン</a>]</p>';
-    }
-    ?>
-    
+    <?php include 'admin_header.php' ?>
+
     <h2>管理画面</h2>
     <p><a href="edit_information.php">お知らせを編集する</a></p>
     <p><a href="edit_quiz.php">クイズを編集する</a></p>

@@ -33,7 +33,7 @@ try {
     }
     
     // 問題ファイルのパス
-    $question_file = "contest_question/{$contest_id}_{$contest_name}/question_{$question_order}.php";
+    $question_file = "contest_question/{$contest_id}_{$contest_name}/explanation_{$question_order}.php";
 
     // 問題のHTMLファイルを読み込む
     if (file_exists($question_file)) {

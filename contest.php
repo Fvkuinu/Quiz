@@ -44,6 +44,7 @@ try {
 </head>
 
 <body>
+    <?php include('header.php'); ?>
     <h1>コンテスト一覧</h1>
     <ul>
         <?php foreach ($contests as $contest): ?>

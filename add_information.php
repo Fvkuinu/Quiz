@@ -4,7 +4,7 @@ if (!isset($_SESSION["user"])) {
     header("Location: login_form.php");
     exit;
 }
-if (!$_SESSION["user"]["id"] == 1) {
+if ($_SESSION["user"]["id"] != 1) {
     header("Location: home.php");
     exit;
 }
@@ -13,7 +13,8 @@ function h($str)
     return htmlspecialchars($str, ENT_QUOTES, "UTF-8");
 }
 date_default_timezone_set("Asia/Tokyo");
-
+?>
+<?php
 // データベースへの接続
 $pdo = new PDO("sqlite:SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <p><a href="admin_panel.php">adminトップへ</a></p>
+<?php include 'admin_header.php' ?>
     <h1>新しい情報の追加</h1>
     <form method="post">
         <div>

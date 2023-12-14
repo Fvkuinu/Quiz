@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -6,13 +7,17 @@ if (!isset($_SESSION["user"])) {
     header("Location: login_form.php");
     exit;
 }
-
+function h($str)
+{
+    return htmlspecialchars($str, ENT_QUOTES, "UTF-8");
+}
+date_default_timezone_set("Asia/Tokyo");
 $userId = $_SESSION["user"]["id"];
 $pdo = new PDO("sqlite:SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$contest_id = isset($_GET['contest_id']) ? (int)$_GET['contest_id'] : 0;
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$contest_id = isset($_GET['contest_id']) ? (int) $_GET['contest_id'] : 0;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
 $perPage = 10; // 1ページあたりの結果数
 $offset = ($page - 1) * $perPage;
 
@@ -33,22 +38,26 @@ try {
     $answerStmt->bindValue(':offset', $offset, PDO::PARAM_INT);
     $answerStmt->execute();
     $answers = $answerStmt->fetchAll(PDO::FETCH_ASSOC);
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     die("エラー: " . $e->getMessage());
 }
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>提出結果</title>
 </head>
+
 <body>
+    <?php include 'header.php' ?>
+    <?php include 'contest_header.php' ?>
     <h1>提出結果</h1>
     <table>
         <thead>
             <tr>
-            <th>提出時間</th>
+                <th>提出時間</th>
                 <th>問題番号</th>
                 <th>問題タイトル</th>
                 <th>回答</th>
@@ -58,19 +67,32 @@ try {
         <tbody>
             <?php foreach ($answers as $answer): ?>
                 <tr>
-                <td><?php echo htmlspecialchars($answer['submitted_at']); ?></td>
-                    <td><?php echo htmlspecialchars($answer['question_order']); ?></td>
-                    <td><?php echo htmlspecialchars($answer['question_title']); ?></td>
-                    <td><?php echo htmlspecialchars($answer['answer_text']); ?></td>
-                    <td><?php echo $answer['is_correct'] ? '正解' : '不正解'; ?></td>
+                    <td>
+                        <?php echo htmlspecialchars($answer['submitted_at']); ?>
+                    </td>
+                    <td>
+                        <?php echo htmlspecialchars($answer['question_order']); ?>
+                    </td>
+                    <td>
+                        <?php echo htmlspecialchars($answer['question_title']); ?>
+                    </td>
+                    <td>
+                        <?php echo htmlspecialchars($answer['answer_text']); ?>
+                    </td>
+                    <td>
+                        <?php echo $answer['is_correct'] ? '正解' : '不正解'; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
     <div>
         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-            <a href="?contest_id=<?php echo $contest_id; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <a href="?contest_id=<?php echo $contest_id; ?>&page=<?php echo $i; ?>">
+                <?php echo $i; ?>
+            </a>
         <?php endfor; ?>
     </div>
 </body>
+
 </html>
