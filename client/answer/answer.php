@@ -12,9 +12,9 @@ if (isset($_GET['answer']) && isset($_GET['questionId'])) {
 
 
 
-    // ユーザーがまだ解いていない問題をランダムに一つ取得するSQLクエリ
+    
     $sql = "SELECT answer FROM question WHERE id = :questionId";
-    $pdo = new PDO("sqlite:SQL/quiz.sqlite");
+    $pdo = new PDO("sqlite:../..//SQL/quiz.sqlite");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     $st = $pdo->prepare($sql);
     $st->execute([':questionId' => $questionId]);
@@ -52,15 +52,18 @@ if (isset($_GET['answer']) && isset($_GET['questionId'])) {
 <head>
     <meta charset="utf-8">
     <title>答え合わせ</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    <?php include('../../header.php'); ?>
 
     <?php
     print '<p>' . $result . '</p>';
     ?>
+    <p><a href='solve.php'>つぎの問題へ</a></p>
+    
+    
 
 
 

@@ -3,7 +3,7 @@ session_start();
 
 // ユーザーがログインしていなければログインページへリダイレクト
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../../login_form.php");
     exit;
 }
 
@@ -13,7 +13,7 @@ function h($str)
 }
 
 date_default_timezone_set("Asia/Tokyo");
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // コンテストIDの取得
@@ -66,8 +66,8 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <?php include 'header.php' ?>
-    <?php include 'contest_header.php' ?>
+    <?php include '../../..header.php' ?>
+    <?php include '../contest_header.php' ?>
     <h1>
         <?php echo h($contest['name']); ?>
     </h1>
@@ -85,7 +85,7 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
     foreach ($ranking as $row) {
         echo "<tr>";
         echo "<td>" . h($row['rank']) . "</td>";
-        echo "<td><a href='profile.php?userId=" . h($row['user_id']) . "'>". h($row['username']) . "</a></td>";
+        echo "<td><a href='../../../clientprofile.php?userId=" . h($row['user_id']) . "'>". h($row['username']) . "</a></td>";
 
         foreach ($questions as $question) {
             $scoreQuery = "SELECT IFNULL(MAX(cq.point), 0) as score

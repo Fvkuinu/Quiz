@@ -12,11 +12,11 @@ function h($str)
 <head>
     <meta charset="utf-8">
     <title>問題投稿</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    <?php include '../../header.php' ?>
 
     <p>スタートボタンを押すと問題が出題されます</p>
     <p>解答は、英数、ひらがな、カタカナのみ入力できます。</p>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../../login/login_form.php");
     exit;
 }
 
@@ -11,7 +11,7 @@ function h($str) {
 
 date_default_timezone_set("Asia/Tokyo");
 // データベース接続情報（以前の設定に基づく）
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
@@ -31,16 +31,15 @@ try {
     } else {
         throw new Exception("コンテストが見つかりません。");
     }
-    include 'header.php';
-    include 'contest_header.php';
-    // コンテスト詳細ファイルのパス
-    $question_file = "contest_question/{$contest_id}_{$contest_name}/detail.php";
+    
+    // 問題ファイルのパス
+    $question_file = "../../../contest_question/{$contest_id}_{$contest_name}/explanation_{$question_order}.php";
 
-    // コンテスト詳細のHTMLファイルを読み込む
+    // 問題のHTMLファイルを読み込む
     if (file_exists($question_file)) {
         include($question_file);
     } else {
-        throw new Exception("コンテスト詳細が見つかりません。".$question_file);
+        throw new Exception("問題が見つかりません。".$question_file);
     }
 } catch (Exception $e) {
     echo "エラー: " . $e->getMessage();

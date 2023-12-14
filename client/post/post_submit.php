@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.php");
     exit;
 }
 
@@ -16,7 +16,7 @@ if (isset($_GET["question"]) && isset($_GET["answer"])) {
     $question = $_GET["question"];
     $answer = $_GET["answer"];
     $time = date("Y-m-d H:i");
-    $pdo = new PDO("sqlite:SQL/quiz.sqlite");
+    $pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     $st = $pdo->prepare("INSERT INTO question(question, answer, writer_id) VALUES(?, ?, ?)");
     $st->execute(array($question, $answer, $_SESSION["user"]["id"]));
@@ -33,17 +33,17 @@ if (isset($_GET["question"]) && isset($_GET["answer"])) {
 <head>
     <meta charset="utf-8">
     <title>問題投稿</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    <?php include('../../header.php'); ?>
 
     <p>
         <?php echo $result; ?>
     </p>
     <p><a href="post.php">つづけて投稿をする</a></p>
-    <p><a href="home.php">ホームに戻る</a></p>
+    <p><a href="../../home.php">ホームに戻る</a></p>
 
 </body>
 

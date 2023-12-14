@@ -14,7 +14,7 @@ function h($str)
 <head>
     <meta charset="utf-8">
     <title>プロフィール</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="/Quiz/CSS/style.css">
 </head>
 
 <body>

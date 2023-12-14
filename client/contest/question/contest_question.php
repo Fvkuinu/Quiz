@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../../login/login_form.php");
     exit;
 }
 
@@ -11,7 +11,7 @@ function h($str) {
 
 date_default_timezone_set("Asia/Tokyo");
 // データベース接続情報（以前の設定に基づく）
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
@@ -33,7 +33,7 @@ try {
     }
     
     // 問題ファイルのパス
-    $question_file = "contest_question/{$contest_id}_{$contest_name}/question_{$question_order}.php";
+    $question_file = "../../../contest_question/{$contest_id}_{$contest_name}/question_{$question_order}.php";
 
     // 問題のHTMLファイルを読み込む
     if (file_exists($question_file)) {

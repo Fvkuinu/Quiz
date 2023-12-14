@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $contest_id = $pdo->lastInsertId();
 
         // contest_question ディレクトリを確認し、必要に応じて作成
-        $baseDir = "contest_question";
+        $baseDir = "/contest_question";
         if (!file_exists($baseDir)) {
             mkdir($baseDir);
         }
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $taskName = "UpdateRatingAfterContest" . $contest_id;
 
         // Schtasks コマンド（日付と時間を別々に指定）
-        $command = "Schtasks /Create /SC ONCE /TN \"" . $taskName . "\" /TR \"C:\\MAMP\\bin\\php\\php8.1.0\\php.exe C:\\MAMP\\htdocs\\Quiz\\update_rating.php " . $contest_id . "\" /SD $run_date /ST $run_time
+        $command = "Schtasks /Create /SC ONCE /TN \"" . $taskName . "\" /TR \"C:\\MAMP\\bin\\php\\php8.1.0\\php.exe C:\\MAMP\\htdocs\\Quiz\\rating\\update_rating.php " . $contest_id . "\" /SD $run_date /ST $run_time
         ";
 
 

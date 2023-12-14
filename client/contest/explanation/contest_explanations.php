@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../../login/login_form.php");
     exit;
 }
 
@@ -12,7 +12,7 @@ function h($str)
 }
 date_default_timezone_set("Asia/Tokyo");
 // データベース接続情報
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 $contest_id = isset($_GET['contest_id']) ? (int) $_GET['contest_id'] : 0;
@@ -42,8 +42,8 @@ try {
 </head>
 
 <body>
-    <?php include 'header.php' ?>
-    <?php include 'contest_header.php' ?>
+    <?php include '../../../header.php' ?>
+    <?php include '../contest_header.php' ?>
     <h1>
         <?php echo h($contest['name']); ?>
     </h1>

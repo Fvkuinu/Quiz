@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../../login/login_form.php");
     exit;
 }
 
@@ -11,7 +11,7 @@ function h($str)
 }
 
 date_default_timezone_set("Asia/Tokyo");
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $contest_id = $_GET['contest_id'] ?? 0;

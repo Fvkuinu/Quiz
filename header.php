@@ -1,15 +1,15 @@
-<p><a href="home.php">ホーム</a></p>
-<p><a href="start.php">クイズを解く</a></p>
-<p><a href="post.php">投稿する</a></p>
-<p><a href="contest.php">コンテスト</a></p>
-<p><a href="ranking.php">ランキング</a></p>
+<p><a href="/Quiz/home.php">ホーム</a></p>
+<p><a href="/Quiz/client/answer/start.php">クイズを解く</a></p>
+<p><a href="/Quiz/client/post/post.php">投稿する</a></p>
+<p><a href="/Quiz/client/contest/contest.php">コンテスト</a></p>
+<p><a href="/Quiz/client/ranking/ranking.php">ランキング</a></p>
 <?php
 if(isset($_SESSION["user"])) {
     // ユーザ認証済みのときの処理
-    print '<p><a href="profile.php?userId='.h($_SESSION["user"]["id"]).'">'.h($_SESSION["user"]["name"]).'</a></p>';
-    print '<p>[<a href="logout.php">ログアウト</a>]</p>';
+    print '<p><a href="/Quiz/client/profile/profile.php?userId='.h($_SESSION["user"]["id"]).'">'.h($_SESSION["user"]["name"]).'</a></p>';
+    print '<p>[<a href="/Quiz/logout.php">ログアウト</a>]</p>';
 } else {
     // 未認証のときの処理
-    print '<p>[<a href="login_form.html">ログイン</a>]</p>';
+    print '<p>[<a href="/Quiz/login_form.html">ログイン</a>]</p>';
 }
 ?>

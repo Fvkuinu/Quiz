@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.php");
     exit;
 }
 function h($str)
@@ -16,11 +16,11 @@ date_default_timezone_set("Asia/Tokyo");
 <head>
     <meta charset="utf-8">
     <title>問題投稿</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
-    <?php include('header.php'); ?>
+    <?php include('../../header.php'); ?>
 
     <h2>問題を作成</h2>
     <p>
