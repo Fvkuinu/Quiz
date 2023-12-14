@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.php");
     exit;
 }
 if ($_SESSION["user"]["id"] != 1) {
-    header("Location: home.php");
+    header("Location: ../../home.php");
     exit;
 }
 function h($str)
@@ -16,7 +16,7 @@ date_default_timezone_set("Asia/Tokyo");
 ?>
 <?php
 // データベース接続情報
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -50,6 +50,7 @@ $question = $stmt->fetch();
     <title>Edit Question</title>
 </head>
 <body>
+    <?php include('../admin_header.php'); ?>
     <h1>質問の編集</h1>
     <form method="post">
         問題: <input type="text" name="question" value="<?php echo $question['question']; ?>"><br>

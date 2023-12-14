@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.php");
     exit;
 }
 if ($_SESSION["user"]["id"] != 1) {
-    header("Location: home.php");
+    header("Location: ../../home.php");
     exit;
 }
 function h($str)
@@ -20,12 +20,12 @@ date_default_timezone_set("Asia/Tokyo");
 <head>
     <meta charset="utf-8">
     <title>admin_panel</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
-    <p><a href="admin_panel.php">adminトップへ</a></p>
-    <p><a href="add_information.php">add</a></p>
+    <?php include('../admin_header.php'); ?>
+    <p><a href="add_information.php">Add information</a></p>
     <?php
     // ページネーション設定
     $itemsPerPage = 10; // 1ページあたりのアイテム数
@@ -33,7 +33,7 @@ date_default_timezone_set("Asia/Tokyo");
     $offset = ($page - 1) * $itemsPerPage;
 
     // データを取得
-    $pdo = new PDO("sqlite:SQL/quiz.sqlite");
+    $pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     $stmt = $pdo->prepare("SELECT * FROM information ORDER BY id DESC LIMIT :offset, :itemsPerPage");
     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);

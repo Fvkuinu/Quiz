@@ -23,6 +23,10 @@ if (isset($_SESSION["user"])) {
     $st->execute(['userId' => $userId]);
     $question = $st->fetch();
 
+    //問題が存在しないなら問題を自動で生成
+    if (!$question){
+        include 'chatapi.php';
+    }
 
 } else {
     //未認証のときの処理

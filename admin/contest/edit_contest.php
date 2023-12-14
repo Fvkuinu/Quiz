@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.php");
     exit;
 }
 if ($_SESSION["user"]["id"] != 1) {
-    header("Location: home.php");
+    header("Location: ../../home.php");
     exit;
 }
 function h($str)
@@ -24,11 +24,11 @@ date_default_timezone_set("Asia/Tokyo");
 </head>
 
 <body>
-    <p><a href="admin_panel.php">adminトップへ</a></p>
+    <?php include('../admin_header.php'); ?>
     <p><a href="add_contest.php">Add Contest</a></p>
     <?php
     // データベース接続情報
-    $pdo = new PDO("sqlite:SQL/quiz.sqlite");
+    $pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
     $perPage = 10; // 1ページあたりの表示件数

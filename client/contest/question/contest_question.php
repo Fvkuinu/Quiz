@@ -32,9 +32,12 @@ try {
         throw new Exception("コンテストが見つかりません。");
     }
     
-    // 問題ファイルのパス
-    $question_file = "../../../contest_question/{$contest_id}_{$contest_name}/question_{$question_order}.php";
+    include '../../../header.php';
+    include '../contest_header.php';
 
+    // 問題ファイルのパス
+    $question_file = "../../../contest_question/{$contest_id}_{$contest_name}/question/question_{$question_order}.html";
+    
     // 問題のHTMLファイルを読み込む
     if (file_exists($question_file)) {
         include($question_file);

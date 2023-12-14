@@ -18,7 +18,7 @@ date_default_timezone_set("Asia/Tokyo");
 session_start();
 
 
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <?php include 'admin_header.php' ?>
+<?php include('../admin_header.php'); ?>
     <form action="<?php echo h($_SERVER["PHP_SELF"]); ?>" method="post">
         <p>
             <label for="name">コンテスト名:</label>

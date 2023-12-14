@@ -37,10 +37,7 @@ include 'header.php';
   }
   ?>
   <p>
-    <a href="show_information.php">お知らせ一覧</a>
-  </p>
-  <p>
-    <a href="post.php">問題投稿</a>
+    <a href="./client/information/show_information.php">お知らせ一覧</a>
   </p>
 </body>
 

@@ -26,7 +26,7 @@ $contestStmt->execute();
 $contest = $contestStmt->fetch(PDO::FETCH_ASSOC);
 
 // 問題の数とタイトルを取得
-$questionQuery = "SELECT id, question_title FROM contest_question WHERE contest_id = :contestId ORDER BY question_order";
+$questionQuery = "SELECT id, question_title, question_order FROM contest_question WHERE contest_id = :contestId ORDER BY question_order";
 $questionStmt = $pdo->prepare($questionQuery);
 $questionStmt->bindParam(':contestId', $contest_id, PDO::PARAM_INT);
 $questionStmt->execute();
@@ -76,18 +76,18 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h2>ランキング</h2>
     <?php
     // 結果の表示
-    echo "<table border='1'>";
+    echo "<table>";
     echo "<tr><th>順位</th><th>ユーザー名</th>";
 
     foreach ($questions as $question) {
-        echo "<th>" . h($question['question_title']) . "</th>";
+        echo "<th>" . h($question['question_order']) . "</th>";
     }
     echo "<th>総得点</th></tr>";
 
     foreach ($ranking as $row) {
         echo "<tr>";
         echo "<td>" . h($row['rank']) . "</td>";
-        echo "<td><a href='../../client/profile/profile.php?userId=" . h($row['user_id']) . "'>". h($row['username']) . "</a></td>";
+        echo "<td><a href='../../profile/profile.php?userId=" . h($row['user_id']) . "'>". h($row['username']) . "</a></td>";
 
         foreach ($questions as $question) {
             $scoreQuery = "SELECT IFNULL(MAX(cq.point), 0) as score

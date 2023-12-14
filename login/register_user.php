@@ -39,8 +39,8 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             echo "<p><a href='login_form.html'>ログイン画面へ</a></p>";
         } else {
             // 新しいユーザーを登録
-            $stmt = $pdo->prepare("INSERT INTO user (username, password) VALUES (?, ?)");
-            $stmt->execute([$username, $password]);
+            $stmt = $pdo->prepare("INSERT INTO user (username, password, rating) VALUES (?, ?, ?)");
+            $stmt->execute([$username, $password, 0]);
 
             echo "登録されました";
             echo "<p><a href='login_form.html'>ログイン画面へ</a></p>";

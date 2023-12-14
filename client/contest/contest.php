@@ -10,6 +10,22 @@ function h($str)
 {
     return htmlspecialchars($str, ENT_QUOTES, "UTF-8");
 }
+function getContestStatus($startTime, $endTime)
+{
+    $currentDateTime = new DateTime();
+    $startDateTime = new DateTime($startTime);
+    $endDateTime = new DateTime($endTime);
+
+    if ($currentDateTime < $startDateTime) {
+        return "開催前";
+    } elseif ($currentDateTime >= $startDateTime && $currentDateTime <= $endDateTime) {
+        return "開催中";
+    } else {
+        return "終了";
+    }
+}
+
+
 date_default_timezone_set("Asia/Tokyo");
 // データベース接続情報
 $pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
@@ -26,7 +42,7 @@ try {
     $pages = ceil($total / $perPage);
 
     // コンテスト一覧を取得
-    $stmt = $pdo->prepare("SELECT * FROM contest LIMIT :perPage OFFSET :offset");
+    $stmt = $pdo->prepare("SELECT * FROM contest ORDER BY start_time DESC LIMIT :perPage OFFSET :offset");
     $stmt->bindParam(':perPage', $perPage, PDO::PARAM_INT);
     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
     $stmt->execute();
@@ -56,13 +72,15 @@ try {
                 </a>
                 <br>
                 開始時間:
-                <?php echo h($contest['start_time']); ?>
-                <br>
+                <?php echo h($contest['start_time']); ?><br>
                 終了時間:
-                <?php echo h($contest['end_time']); ?>
+                <?php echo h($contest['end_time']); ?><br>
+                状態:
+                <?php echo getContestStatus($contest['start_time'], $contest['end_time']); ?>
             </li>
         <?php endforeach; ?>
     </ul>
+
 
     <div>
         <?php for ($i = 1; $i <= $pages; $i++): ?>

@@ -60,7 +60,7 @@ try {
 
             // コンテストが開始されている場合のみリンクを表示
             if ($currentTime >= $startTime) {
-                $link = "../../../contest_question.php?contest_id={$contest_id}&question_order={$question['question_order']}";
+                $link = "contest_question.php?contest_id={$contest_id}&question_order={$question['question_order']}";
                 echo "<li><a href='{$link}'>" . h($question['question_title']) . "</a></li>";
             } else {
                 // コンテストが開始していない場合

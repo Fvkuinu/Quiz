@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.php");
     exit;
 }
 if ($_SESSION["user"]["id"] != 1) {
-    header("Location: home.php");
+    header("Location: ../../home.php");
     exit;
 }
 function h($str)
@@ -15,7 +15,7 @@ function h($str)
 date_default_timezone_set("Asia/Tokyo");
 ?>
 <?php
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 $contest_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("コンテストが見つかりません");
     }
     ?>
-    <p><a href="admin_panel.php">adminトップへ</a></p>
+    <?php include('../admin_header.php'); ?>
     <!-- 編集フォーム -->
     <form action="<?php echo h($_SERVER["PHP_SELF"] . '?id=' . $contest_id); ?>" method="post">
         <p>

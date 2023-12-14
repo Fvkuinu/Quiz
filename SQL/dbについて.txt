@@ -1,7 +1,7 @@
 ファイル名：quiz.sqlite
 
 
-テーブルと、カラム名
+テーブルと、カラム名（型については下にあるコピペ用コマンドを参照）
 
 テーブル名：user
 カラム名：id,username,password,rating
@@ -16,12 +16,16 @@
 テーブル名：user_answer
 カラム名：id,user_id,question_id,answer,answered_at,is_correct
 
+テーブル名：contest_answer
+カラム名：id, contest_id, user_id, question_id, answer_text, submitted_at, is_correct
+
+テーブル名：contest_question
+カラム名：id, contest_id, question_order, question_title, point, correct_answer, created_at,updated_at
 
 
 コピペ用コマンド
 cd C:\MAMP\htdocs\Quiz\SQL
 sqlite3 quiz.sqlite
-
 
 create table user(id integer primary key autoincrement, username text,password text,rating int);
 insert into user(id,username,password,rating) values(1,'admin','1234',0);

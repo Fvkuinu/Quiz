@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.php");
     exit;
 }
 if ($_SESSION["user"]["id"] != 1) {
-    header("Location: home.php");
+    header("Location: ../../home.php");
     exit;
 }
 function h($str)
@@ -17,7 +17,7 @@ date_default_timezone_set("Asia/Tokyo");
 <?php
 
 // データベース接続情報
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
 $perPage = 10; // 1ページあたりの表示件数
@@ -42,13 +42,17 @@ try {
         $stmt->execute();
         $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        include '../admin_header.php';
+
         // 問題の表示
         foreach ($questions as $question) {
             echo "<div>\n";
             echo "<h2>" . h($question['question_title']) . "</h2>\n";
-            echo "<p>Order: " . h($question['question_order']) . "</p>\n";
+            echo "<p>番号: " . h($question['question_order']) . "</p>\n";
+            echo "<p>点数: " . h($question['point']) . "</p>\n";
             // 削除リンク
-            echo "<a href='delete_contest_question.php?question_id=" . $question['id'] . "' onclick='return confirmDelete()'>Delete</a>";
+            echo "<a href='delete_contest_question.php?question_id=" . $question['id'] . "' onclick='return confirmDelete()'>Delete</a> | ";
+            echo "<a href='modify_contest_question.php?question_id=" . $question['id'] . "'>Modify</a>";
             echo "</div>\n";
         }
 

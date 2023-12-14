@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION["user"])) {
-    header("Location: login_form.php");
+    header("Location: ../../login/login_form.php");
     exit;
 }
 if ($_SESSION["user"]["id"] != 1) {
-    header("Location: home.php");
+    header("Location: ../../home.php");
     exit;
 }
 function h($str)
@@ -15,7 +15,7 @@ function h($str)
 date_default_timezone_set("Asia/Tokyo");
 ?>
 <?php
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 // 指定されたIDの情報を取得
 $id = isset($_GET['id']) ? $_GET['id'] : '';
@@ -51,11 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Information</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/style.css">
 </head>
 
 <body>
-    <p><a href="admin_panel.php">adminトップへ</a></p>
+    <?php include('../admin_header.php'); ?>
     <h1>情報の編集</h1>
     <form method="post">
         <div>

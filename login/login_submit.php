@@ -19,7 +19,7 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
         $result = "ようこそ" . $username . "さん。ログインに成功しました。";
         // ユーザーが管理者の場合、管理画面にリダイレクト
         if ($user_on_db["id"]==1) {
-            header("Location: admin_panel.php");
+            header("Location: ../admin/admin_panel.php");
             exit;
         }
     } else {
@@ -37,7 +37,7 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
 <head>
     <meta charset="utf-8">
     <title>Login success</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 
 <body>
@@ -45,7 +45,7 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
         <h2>
             <?php print $result; ?>
         </h2>
-        <p><a href="home.php">ホームに戻る</a></p>
+        <p><a href="../home.php">ホームに戻る</a></p>
 
 </body>
 

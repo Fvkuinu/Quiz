@@ -16,10 +16,8 @@ date_default_timezone_set("Asia/Tokyo");
 ?>
 <?php
 // データベースへの接続
-$pdo = new PDO("sqlite:SQL/quiz.sqlite");
+$pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-
-include 'database_config.php'; // データベース設定をインクルード
 
 $contest_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 if ($contest_id <= 0) {
@@ -127,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+<?php include('../admin_header.php'); ?>
     <h2>コンテストへの問題追加 - コンテストID:
         <?php echo $contest_id; ?>
     </h2>

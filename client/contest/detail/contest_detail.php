@@ -34,7 +34,7 @@ try {
     include '../../../header.php';
     include '../contest_header.php';
     // コンテスト詳細ファイルのパス
-    $question_file = "../../../contest_question/{$contest_id}_{$contest_name}/detail.php";
+    $question_file = "../../../contest_question/{$contest_id}_{$contest_name}/detail.html";
 
     // コンテスト詳細のHTMLファイルを読み込む
     if (file_exists($question_file)) {
