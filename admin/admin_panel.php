@@ -26,11 +26,11 @@ date_default_timezone_set("Asia/Tokyo");
 <body>
     <?php include 'admin_header.php' ?>
 
-    <h2>管理画面</h2>
-    <p><a href="./information/edit_information.php">お知らせを編集する</a></p>
-    <p><a href="./question/edit_quiz.php">クイズを編集する</a></p>
-    <p><a href="./contest/edit_contest.php">コンテストを編集する</a></p>
-
+    <div id=text><h1>管理画面</h1>
+    <a href="./information/edit_information.php"  class="btn-partial-line"><i class="fa fa-caret-right"></i> お知らせを編集する</a>
+    <a href="./question/edit_quiz.php"  class="btn-partial-line"><i class="fa fa-caret-right"></i> クイズを編集する</a>
+    <a href="./contest/edit_contest.php"  class="btn-partial-line"><i class="fa fa-caret-right"></i> コンテストを編集する</a>
+    </div>
 
 
 </body>

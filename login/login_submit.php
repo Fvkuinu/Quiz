@@ -12,11 +12,11 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
     $st->execute(array($username));
     $user_on_db = $st->fetch();
     if (!$user_on_db) {
-        $result = "指定されたユーザが存在しません。";
+        $result = '<div id=error>指定されたユーザが存在しません。</div><a href="login_form.html" class="btn-partial-line"><i class="fa fa-caret-right"></i> ログインへ戻る</a>';
     } else if ($passwd == $user_on_db["password"]) {
         // 等しければ
         $_SESSION["user"] = ["id" => $user_on_db["id"],"name" => $username];
-        $result = "ようこそ" . $username . "さん。ログインに成功しました。";
+        $result = "<h2>ようこそ" . $username . "さん。ログインに成功しました。</h2>";
         // ユーザーが管理者の場合、管理画面にリダイレクト
         if ($user_on_db["id"]==1) {
             header("Location: ../admin/admin_panel.php");
@@ -24,10 +24,10 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
         }
     } else {
         // そうでなければ
-        $result = "パスワードが違います。";
+        $result = '<div id=error>パスワードが違います。</div><a href="login_form.html" class="btn-partial-line"><i class="fa fa-caret-right"></i>ログインへ戻る</a>';
     }
 }else {
-    $result = "不正なアクセスです。";
+    $result = '<div id=error>不正なアクセスです。</div><a href="login_form.html" class="btn-partial-line"><i class="fa fa-caret-right"></i>ログインへ戻る</a>';
 }
 
 ?>
@@ -42,10 +42,8 @@ if (isset($_GET["username"]) && isset($_GET["passwd"])) {
 
 <body>
 
-        <h2>
             <?php print $result; ?>
-        </h2>
-        <p><a href="../home.php">ホームに戻る</a></p>
+        <p><a href="../home.php" class="btn-partial-line"><i class="fa fa-caret-right"></i>ホームに戻る</a></p>
 
 </body>
 

@@ -48,14 +48,17 @@ $question = $stmt->fetch();
 <html>
 <head>
     <title>Edit Question</title>
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 <body>
     <?php include('../admin_header.php'); ?>
-    <h1>質問の編集</h1>
+    <h1>MODIFY QUIZ</h1>
     <form method="post">
-        問題: <input type="text" name="question" value="<?php echo $question['question']; ?>"><br>
-        回答: <textarea name="answer"><?php echo $question['answer']; ?></textarea><br>
-        <button type="submit">更新</button>
+        <h3>問題</h3>
+        <input type="text" name="question" value="<?php echo $question['question']; ?>" required>
+        <h3>回答</h3>
+        <textarea name="answer" required><?php echo $question['answer']; ?></textarea><br>
+        <button type="submit" class="btn-square">更新</button>
     </form>
 </body>
 </html>

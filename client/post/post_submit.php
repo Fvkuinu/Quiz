@@ -22,9 +22,9 @@ if (isset($_GET["question"]) && isset($_GET["answer"])) {
     $st->execute(array($question, $answer, $_SESSION["user"]["id"]));
 
 
-    $result = "投稿しました。";
+    $result = "<h2>投稿しました。</h2>";
 } else {
-    $result = "内容がありません。";
+    $result = "<h2>内容がありません</h2>";
 }
 ?>
 <!DOCTYPE html>
@@ -42,8 +42,8 @@ if (isset($_GET["question"]) && isset($_GET["answer"])) {
     <p>
         <?php echo $result; ?>
     </p>
-    <p><a href="post.php">つづけて投稿をする</a></p>
-    <p><a href="../../home.php">ホームに戻る</a></p>
+    <p><a href="post.php" class="btn-partial-line"><i class="fa fa-caret-right"></i>つづけて投稿をする</a></p>
+    <p><a href="../../home.php" class="btn-partial-line"><i class="fa fa-caret-right"></i>ホームに戻る</a></p>
 
 </body>
 

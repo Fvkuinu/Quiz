@@ -82,15 +82,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         exec($command, $output, $return_var);
         if ($return_var === 0) {
-            echo "タスクがスケジュールされました。";
+            echo "<h2>タスクがスケジュールされました。</h2>";
         } else {
-            echo "タスクのスケジューリングに失敗しました。";
+            echo "<div id=error>タスクのスケジューリングに失敗しました。</div>";
         }
 
         //header("Location: edit_contest.php");
         //exit;
     } catch (PDOException $e) {
-        echo "コンテスト作成に失敗しました: " . $e->getMessage();
+        echo "<div id=error>コンテスト作成に失敗しました。</div>" . $e->getMessage();
     }
 }
 ?>
@@ -100,31 +100,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>コンテスト作成フォーム</title>
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 
 <body>
 <?php include('../admin_header.php'); ?>
+    <h1>ADD CONTEST</h1>
     <form action="<?php echo h($_SERVER["PHP_SELF"]); ?>" method="post">
-        <p>
-            <label for="name">コンテスト名:</label>
+            <h3>コンテスト名:</h3>
             <input type="text" name="name" id="name" required>
-        </p>
-        <p>
-            <label for="description">説明:</label>
-            <textarea name="description" id="description"></textarea>
-        </p>
-        <p>
+            <h3>説明:</h3>
+            <textarea name="description" id="description" required></textarea>
+            <h3>時刻設定</h3>
             <label for="start_time">開始時間:</label>
-            <input type="datetime-local" name="start_time" id="start_time" required>
-        </p>
-        <p>
+            <input type="datetime-local" name="start_time" id="start_time" required><br>
+
             <label for="end_time">終了時間:</label>
-            <input type="datetime-local" name="end_time" id="end_time" required>
-        </p>
-        <p>
-            <input type="submit" value="コンテスト作成">
-        </p>
+            <input type="datetime-local" name="end_time" id="end_time" required><br>
+
+            <input type="submit" value="コンテスト作成" class='btn-square' >
     </form>
+
+    <a href="edit_contest.php" class="btn-partial-line"><i class="fa fa-caret-right"></i>コンテスト一覧へ戻る</a>
 </body>
 
 </html>

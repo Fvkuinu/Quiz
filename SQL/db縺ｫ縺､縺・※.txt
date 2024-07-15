@@ -1,0 +1,46 @@
+ファイル名：quiz.sqlite
+
+
+テーブルと、カラム名（型については下にあるコピペ用コマンドを参照）
+
+テーブル名：user
+カラム名：id,username,password,rating
+※初期値として、[admin,1234]（管理者）[Alice,30]が入ってる。
+
+テーブル名：question
+カラム名：id,question,answer,writer_id
+
+テーブル名：information
+カラム名：id,title,content,created_at,updated_at
+
+テーブル名：user_answer
+カラム名：id,user_id,question_id,answer,answered_at,is_correct
+
+テーブル名：contest_answer
+カラム名：id, contest_id, user_id, question_id, answer_text, submitted_at, is_correct
+
+テーブル名：contest_question
+カラム名：id, contest_id, question_order, question_title, point, correct_answer, created_at,updated_at
+
+
+コピペ用コマンド
+cd C:\MAMP\htdocs\Quiz\SQL
+sqlite3 quiz.sqlite
+
+create table user(id integer primary key autoincrement, username text,password text,rating int);
+insert into user(id,username,password,rating) values(1,'admin','1234',0);
+insert into user(id,username,password,rating) values(2,'Alice','30',0);
+
+create table user_answer(id integer primary key autoincrement,user_id int,question_id int,answer text,answered_at text,is_correct boolean);
+insert into user_answer(id,user_id,question_id,answer,answered_at,is_correct) values(1,2,1,'100','2023-12-10 00:00:00',0);
+
+insert into information(id,title,content,created_at,updated_at) values(2,'サービス開始！','クイズを提供するサービス開始しました。','2023-12-10 00:00:00','2023-12-10 00:00:00');
+
+create table contest(id integer primary key autoincrement,name text, description text,start_time text, end_time text,created_at text, updated_at text);
+insert into contest(id ,name , description ,start_time , end_time ,created_at , updated_at ) values(1,'第一回コンテスト','第一回コンテストだよ','2018-10-21 00:00:00', '2018-10-21 00:00:00','2018-10-21 00:00:00','2018-10-21 00:00:00');
+
+create table contest_answer(id integer primary key autoincrement,contest_id int, user_id int, question_id int,answer_text text, submitted_at text, is_correct boolean);
+insert into contest_answer(id ,contest_id , user_id , question_id,answer_text, submitted_at, is_correct) values(1,1,2,1,'さかな','2018-10-21 00:00:00', 0);
+
+create table contest_question(id integer primary key autoincrement, contest_id int, question_order int, question_title text, point int, correct_answer text,  created_at text,updated_at text);
+insert into contest_question(id , contest_id , question_title ,point,correct_answer, created_at , updated_at ) values(1,1,'海とか川にいるやつら',100,'さかな','2018-10-21 00:00:00','2018-10-21 00:00:00');

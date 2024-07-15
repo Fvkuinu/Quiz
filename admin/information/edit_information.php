@@ -20,12 +20,13 @@ date_default_timezone_set("Asia/Tokyo");
 <head>
     <meta charset="utf-8">
     <title>admin_panel</title>
-    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 
 <body>
     <?php include('../admin_header.php'); ?>
-    <p><a href="add_information.php">Add information</a></p>
+    <h1>EDIT INFORMATION</h1>
+    <a href="add_information.php" class="btn-square">Add information</a>
     <?php
     // ページネーション設定
     $itemsPerPage = 10; // 1ページあたりのアイテム数
@@ -43,10 +44,10 @@ date_default_timezone_set("Asia/Tokyo");
 
     // データの表示
     foreach ($informations as $info) {
-        echo "<p>{$info['title']}</p>";
-        echo "<div>{$info['content']}</div>";
+        echo "<div class='box26'><span class='box-title'>{$info['title']}</span>";
+        echo "<p>{$info['content']}</p>";
         // 編集・削除リンク
-        echo "<a href='modify_information.php?id={$info['id']}'>Modify</a> | <a href='delete_information.php?id={$info['id']}' onclick='return confirmDelete()'>Delete</a>";
+        echo "<a class='btn-square' href='modify_information.php?id={$info['id']}'>Modify</a> | <a  class='btn-square' href='delete_information.php?id={$info['id']}' onclick='return confirmDelete()'>Delete</a></div>";
     }
 
     // ページネーションリンク

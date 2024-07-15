@@ -58,10 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         exec($command, $output, $return_var);
         if ($return_var === 0) {
-            echo "タスクがスケジュールされました。";
+            echo "<h2>タスクがスケジュールされました。</h2>";
+            echo '<a href="edit_contest.php" class="btn-partial-line">  <i class="fa fa-caret-right"></i>コンテスト一覧へ戻る</a>';
         } else {
-            echo "タスクのスケジューリングに失敗しました。";
+            echo "<h2>タスクのスケジューリングに失敗しました。</h2>";
+            echo '<a href="edit_contest.php" class="btn-partial-line">  <i class="fa fa-caret-right"></i>コンテスト一覧へ戻る</a>';
         }
+        
 
         // 更新後にリダイレクト
         //header("Location: edit_contest.php");
@@ -79,32 +82,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("コンテストが見つかりません");
     }
     ?>
+
     <?php include('../admin_header.php'); ?>
+    <h1>MODIFY CONTEST</h1>
     <!-- 編集フォーム -->
     <form action="<?php echo h($_SERVER["PHP_SELF"] . '?id=' . $contest_id); ?>" method="post">
-        <p>
-            <label for="name">コンテスト名:</label>
+            <h3>コンテスト名</h3>
             <input type="text" name="name" id="name" value="<?php echo h($contest['name']); ?>" required>
-        </p>
-        <p>
-            <label for="description">説明:</label>
+
+            <h3>説明:</h3>
             <textarea name="description"
-                id="description"><?php echo h($contest['description']); ?></textarea>
-        </p>
-        <p>
+                id="description"　required><?php echo h($contest['description']); ?></textarea>
+  
+                <h3>時刻設定</h3>
             <label for="start_time">開始時間:</label>
             <input type="datetime-local" name="start_time" id="start_time"
-                value="<?php echo h($contest['start_time']); ?>" required>
-        </p>
-        <p>
+                value="<?php echo h($contest['start_time']); ?>" required><br>
+
             <label for="end_time">終了時間:</label>
             <input type="datetime-local" name="end_time" id="end_time"
                 value="<?php echo h($contest['end_time']); ?>" required>
-        </p>
+
         <p>
-            <input type="submit" value="更新">
+            <input type="submit" value="更新" class="btn-square">
         </p>
     </form>
     <?php
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>コンテスト編集</title>
+    <link rel="stylesheet" href="../..//CSS/style.css">
+</head>
+
+<body></body>
+
+</html>

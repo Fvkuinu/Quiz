@@ -44,22 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Add New Information</title>
-    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 
 <body>
 <?php include '../admin_header.php' ?>
-    <h1>新しい情報の追加</h1>
+    <h1>ADD INFORMATION</h1>
     <form method="post">
-        <div>
-            <label for="title">タイトル:</label>
-            <input type="text" id="title" name="title">
-        </div>
-        <div>
-            <label for="content">内容:</label>
-            <textarea id="content" name="content"></textarea>
-        </div>
-        <button type="submit">追加</button>
+            <h3>タイトル</h3>
+            <input type="text" id="title" name="title" required>
+            <h3>内容</h3>
+            <textarea id="content" name="content" required></textarea><br>
+
+        <button type="submit" class="btn-square" >追加</button>
+
+        
     </form>
 </body>
 

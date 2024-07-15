@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($count > 0) {
         // 既に存在する場合はエラーメッセージを表示
-        echo "エラー: この問題順番は既に使用されています。";
+        echo "<div id=error>エラー: この問題順番は既に使用されています。</div>";
     } else {
         // ここで問題をデータベースに追加
         try {
@@ -108,9 +108,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // PHPファイルの生成
             file_put_contents($phpFilePath, $phpContent);
     
-            echo "問題が追加され、ファイルが生成されました。";
+            echo "<h2>問題が追加され、ファイルが生成されました。</h2>";
         } catch (PDOException $e) {
-            echo "問題の追加に失敗しました: " . $e->getMessage();
+            echo "<div id=error>問題の追加に失敗しました。</div>" . $e->getMessage();
         }
     }
     
@@ -122,33 +122,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>問題追加</title>
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 
 <body>
 <?php include('../admin_header.php'); ?>
-    <h2>コンテストへの問題追加 - コンテストID:
+    <h1>ADD QUIZ - コンテストID:
         <?php echo $contest_id; ?>
-    </h2>
+    </h1>
     <form action="<?php echo h($_SERVER["PHP_SELF"] . '?id=' . $contest_id); ?>" method="post">
-        <p>
-            <label for="question_order">問題の順番:</label>
+            <h3>問題の順番</h3>
             <input type="number" name="question_order" id="question_order" required>
-        </p>
-        <p>
-            <label for="question_title">問題のタイトル:</label>
+            <h3>問題のタイトル</h3>
             <input type="text" name="question_title" id="question_title" required>
-        </p>
-        <p>
-            <label for="point">点数:</label>
+
+            <h3>点数</h3>
             <input type="number" name="point" id="point" required>
-        </p>
-        <p>
-            <label for="correct_answer">正解:</label>
-            <input type="text" name="correct_answer" id="correct_answer" required>
-        </p>
-        <p>
-            <input type="submit" value="問題を追加">
-        </p>
+
+            <h3>正解</h3>
+            <input type="text" name="correct_answer" id="correct_answer" required><br>
+
+            <input type="submit" value="問題を追加" class="btn-square"><br>
+            <a href="edit_contest.php" class="btn-partial-line"> <i class="fa fa-caret-right"></i>
+コンテスト一覧へ戻る</a>
     </form>
 </body>
 

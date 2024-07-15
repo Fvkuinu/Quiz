@@ -63,11 +63,11 @@ try {
 
 <body>
     <?php include('../../header.php'); ?>
-    <h1>コンテスト一覧</h1>
+    <h1>CONTEST</h1>
     <ul>
         <?php foreach ($contests as $contest): ?>
             <li>
-                <a href="./detail/contest_detail.php?contest_id=<?php echo h($contest['id']); ?>">
+                <div class="box26"><a class="box-title" href="./detail/contest_detail.php?contest_id=<?php echo h($contest['id']); ?>">
                     <?php echo h($contest['name']); ?>
                 </a>
                 <br>
@@ -77,6 +77,7 @@ try {
                 <?php echo h($contest['end_time']); ?><br>
                 状態:
                 <?php echo getContestStatus($contest['start_time'], $contest['end_time']); ?>
+                <div>
             </li>
         <?php endforeach; ?>
     </ul>

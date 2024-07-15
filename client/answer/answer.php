@@ -23,9 +23,9 @@ if (isset($_GET['answer']) && isset($_GET['questionId'])) {
     if ($correctAnswer !== false) {
         $isCorrect = $user_answer === $correctAnswer;
         if ($isCorrect) {
-            $result = "正解です！";
+            $result = "<h2>正解です！</h2>";
         } else {
-            $result = "不正解です。正解は " . h($correctAnswer) . " です。";
+            $result = "<div id=error>不正解です。正解は " . h($correctAnswer) . " です。</div>";
         }
         if (isset($_SESSION["user"])) {
             $insertSql = "INSERT INTO user_answer (user_id, question_id, answer,answered_at, is_correct) VALUES (:userId, :questionId, :answer, :answered_at, :isCorrect)";
@@ -39,7 +39,7 @@ if (isset($_GET['answer']) && isset($_GET['questionId'])) {
             $insertStmt->execute();
         }
     } else {
-        $result = "問題が見つかりませんでした。";
+        $result = "<div id=error>問題が見つかりませんでした。</div>";
     }
 
 
@@ -52,16 +52,16 @@ if (isset($_GET['answer']) && isset($_GET['questionId'])) {
 <head>
     <meta charset="utf-8">
     <title>答え合わせ</title>
-    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 
 <body>
     <?php include('../../header.php'); ?>
 
     <?php
-    print '<p>' . $result . '</p>';
+    print  $result ;
     ?>
-    <p><a href='solve.php'>つぎの問題へ</a></p>
+    <p><a href='solve.php' class="btn-partial-line"><i class="fa fa-caret-right"></i>つぎの問題へ</a></p>
     
     
 

@@ -30,6 +30,7 @@ $rank = 1 + $start;
 $prev_rating = null;
 $same_rank_count = 1;
 
+echo " <h1>ランキング</h1>";
 echo "<table>";
 echo "<tr><th>順位</th><th>ユーザーネーム</th><th>Rating</th></tr>"; // ヘッダ行
 foreach ($users as $row) {
@@ -56,3 +57,17 @@ for ($i = 1; $i <= $totalPages; $i++) {
     echo "<a href='?page=" . $i . "'>" . $i . "</a> ";
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ランキング</title>
+    <link rel="stylesheet" href="../..//CSS/style.css">
+</head>
+
+<body>
+   
+</body>
+
+</html>

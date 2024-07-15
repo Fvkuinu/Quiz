@@ -51,23 +51,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Information</title>
-    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 
 <body>
     <?php include('../admin_header.php'); ?>
-    <h1>情報の編集</h1>
+    <h1>MODIFY INFORMATION</h1>
     <form method="post">
-        <div>
-            <label for="title">タイトル:</label>
-            <input type="text" id="title" name="title" value="<?php echo h($info['title']); ?>">
-        </div>
-        <div>
-            <label for="content">内容:</label>
-            <textarea id="content" name="content"><?php echo h($info['content']); ?></textarea>
-        </div>
-        <button type="submit">更新</button>
+            <h3>タイトル</h3>
+            <input type="text" id="title" name="title" value="<?php echo h($info['title']); ?>" required>
+            <h3>内容</h3>
+            <textarea id="content" name="content" required><?php echo h($info['content']); ?></textarea><br>
+        <button type="submit" class="btn-square" >更新</button>
     </form>
 </body>
-
 </html>

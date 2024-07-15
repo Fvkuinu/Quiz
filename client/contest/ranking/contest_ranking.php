@@ -58,17 +58,18 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
     <title>コンテスト問題</title>
-    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../../..//CSS/style.css">
 </head>
 
 <body>
-    <?php include '../../..header.php' ?>
+    <?php include '../../../header.php' ?>
     <?php include '../contest_header.php' ?>
     <h1>
         <?php echo h($contest['name']); ?>

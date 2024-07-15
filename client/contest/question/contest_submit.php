@@ -50,3 +50,16 @@ try {
     echo "エラー: " . $e->getMessage();
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>コンテスト解説</title>
+    <link rel="stylesheet" href="../../..//CSS/style.css">
+</head>
+
+<body>
+</body>
+
+</html>

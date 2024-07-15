@@ -39,7 +39,7 @@ try {
 
 <head>
     <title>コンテスト問題</title>
-    <link rel="stylesheet" href="../../../CSS/style.css">
+    <link rel="stylesheet" href="../../..//CSS/style.css">
 </head>
 
 <body>

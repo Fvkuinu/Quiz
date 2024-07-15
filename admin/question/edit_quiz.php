@@ -20,11 +20,12 @@ date_default_timezone_set("Asia/Tokyo");
 <head>
     <meta charset="utf-8">
     <title>admin_panel</title>
-    <link rel="stylesheet" href="../../CSS/style.css">
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 
 <body>
     <?php include(('../admin_header.php')); ?>
+    <h1>EDIT QUIZ</h1>
     <?php
     $itemsPerPage = 5; // 1ページあたりのアイテム数
     $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
@@ -42,9 +43,9 @@ date_default_timezone_set("Asia/Tokyo");
 
     // データの表示
     foreach ($questions as $question) {
-        echo "<p>{$question['question']}</p>";
-        echo "<div>回答: {$question['answer']}</div>";
-        echo "<a href='modify_quiz.php?id={$question['id']}'>Modify</a> | <a href='delete_quiz.php?id={$question['id']}' onclick='return confirmDelete()'>Delete</a>";
+        echo "<div class='box26'><span class='box-title'>問題：{$question['question']}</span>";
+        echo "<p>回答: {$question['answer']}</p>";
+        echo "<a class='btn-square' href='modify_quiz.php?id={$question['id']}'>Modify</a> | <a class='btn-square' href='delete_quiz.php?id={$question['id']}' onclick='return confirmDelete()'>Delete</a></div>";
     }
 
     // ページネーションリンク

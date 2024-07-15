@@ -56,13 +56,13 @@ if (isset($_SESSION["user"])) {
     <?php
     if ($question) {
         // 問題が見つかった場合の処理
-        echo '<h2>問題</h2>';
-        echo "<p>Question: " . $question['question'];
+        echo '<div id=text><h2>問題</h2>';
+        echo "<p id=quiz>" . $question['question'];
         echo '<form id="quizForm" action="answer.php" method="get">
-        <input type="text" name="answer" />
+        <input type="text" name="answer" required/>
         <input type="hidden" name="questionId" value=' . $question['id'] . '>
-        <button type="submit">回答を送信</button>
-        </form>';
+        <br><button type="submit" class="btn-square">回答</button>
+        </form></div>';
         echo "<script>
             let elapsedTime = 0; // 経過時間を記録する変数
             const intervalTime = 1000; // 更新間隔（1秒）
@@ -85,7 +85,7 @@ if (isset($_SESSION["user"])) {
         </script>";
     } else {
         // 問題が見つからなかった場合の処理
-        echo "All questions have been answered.";
+        echo "<div id=text>All questions have been answered.</div>";
 
     }
     ?>

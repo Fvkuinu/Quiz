@@ -41,15 +41,21 @@ function h($str)
             $correctAnswers = $answers['correct_answers'];
     
             // 情報の表示
-            echo "<p>解いた問題の数: " . h($solvedProblems) . "</p>";
-            echo "<p>正解数: " . h($correctAnswers) . "</p>";
+
+            echo "<table>";
+            echo "<tr><th>解いた問題の数</th><th>正解数</th><th>正解率</th></tr>"; // ヘッダ行
+            
+            echo "<tr>";
+            echo "<td>" . h($solvedProblems)  . "</td>"; // 順位
+            echo "<td>" .h($correctAnswers)."</td>"; // ユーザーネーム
+            
     
             // 正解率の計算と表示
             if ($solvedProblems > 0) {
                 $accuracy = ($correctAnswers / $solvedProblems) * 100;
-                echo "<p>正解率: " . h(number_format($accuracy, 2)) . "%</p>";
+                echo "<td>" . h(number_format($accuracy, 2)) . "%</td>";
             } else {
-                echo "<p>正解率: N/A</p>";
+                echo "<td>正解率: N/A</td>";
             }
         } else {
             echo "<p>指定されたユーザーは存在しません。</p>";
@@ -57,6 +63,7 @@ function h($str)
     } else {
         echo "<p>無効なユーザーIDです。</p>";
     }
+    echo "</tr>";
     ?>
 
 

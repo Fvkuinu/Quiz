@@ -1,3 +1,466 @@
-h1{
-    color:#01f0f0;
+body {
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-size: 0.95em; 
+  text-align: center;
 }
+
+h1 {
+  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: #f4f4f4;/*背景色*/
+  border-left: solid 5px #7db4e6;/*左線*/
+  border-bottom: solid 3px #d7d7d7;/*下線*/
+}
+
+h2 {
+  color: #eee;
+  font-weight: bold;
+  padding: 10px;
+      margin: 5px;
+  font-size: 1.2em;
+      background-color: dodgerblue;
+}
+
+h3 {
+  color: #eee;
+  font-weight: bold;
+  padding: 3px 0 1px 8px;
+  margin: 0;
+  font-size: 1.1em;
+      background-color:cornflowerblue;
+}
+
+table{  
+  border-collapse:  collapse; /* セルの線を重ねる */
+  width:  100%;               /* 幅指定 */
+  table-layout: fixed;        /* セルの幅計算指定 */
+}
+
+th,td {
+  border: solid 1px;          /* 枠線指定 */
+}
+th{
+  background:lightsteelblue;
+}
+input,textarea{
+  margin:10px;
+}
+#text{
+  background:lightsteelblue;
+  margin: 10px;
+  padding:10px;
+}
+#login {
+  margin: auto;
+  background:lightblue;
+}
+
+#quiz{
+  background:white;
+  padding:10px 20px;
+  display: inline-block; /* テキストの横幅に合わせる */
+}
+#error{
+  color: black;
+  font-weight: bold;
+  padding: 4px 0 1px 8px;
+      margin: 0;
+  font-size: 1.2em;
+      background-color: red;
+}
+
+.box26 {
+  position: relative;
+  margin: 2em 0;
+  padding: 0.5em 1em;
+  border: solid 3px #95ccff;
+  border-radius: 8px;
+}
+.box26 .box-title {
+  position: absolute;
+  display: inline-block;
+  top: -13px;
+  left: 10px;
+  padding: 0 9px;
+  line-height: 1;
+  font-size: 19px;
+  background: #FFF;
+  color: #95ccff;
+  font-weight: bold;
+}
+.box26 p {
+  margin: 5px; 
+  padding: 0;
+}
+/*ただのボタン*/
+.btn-square {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+.btn-square:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+/*a*/
+.btn-partial-line {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  border-bottom: solid 3px #668ad8;
+  border-left: solid 3px #668ad8;
+  color: #668ad8;
+  transition: .4s;
+}
+
+.btn-partial-line:hover {
+  padding-left: 0.7em;
+  padding-right: 0.3em;
+}
+
+/*コンテストヘッダー用*/
+a{
+  padding:10px;
+  margin:10px;
+}
+.btn-vertical-border {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 5px 11px 5px 15px;
+  text-decoration: none;
+  color: #67c5ff;
+  transition: .4s;
+}
+
+.btn-vertical-border:before {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 4px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  background:#67c5ff;
+}
+
+.btn-vertical-border:after {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 4px;
+  height: 100%;
+  top:0;
+  left: 100%;
+  border-radius: 3px;
+  background:#67c5ff;
+}
+
+.btn-vertical-border:hover:before, .btn-vertical-border:hover:after {
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+}
+
+
+/* PC用メニューリンクマウスが上に来た時用 */
+.pc-menu > ul > li > a:hover {
+  background: #555555; 
+  /* background-color: #3584bb; */
+}
+/* 以下は前回までの内容 */
+header {
+  /* background: #eeeeee; */
+  /* background: #3584bb; */
+  height: 60px;
+ 
+}
+.main-menu {
+  margin: 0 auto;
+  display: flex;
+  /* background: #dddddd;   */
+  background: #3584bb;
+  width: 1280px;
+}
+/* .logo {
+  text-align: center;
+  padding: 18px;
+  font-size: 24px;
+  width: 200px;
+  background: #cccccc;
+} */
+/* PC用メニュー領域 */
+/* .pc-menu {
+  ロゴ以外は全てメニュー領域にする
+  width: 100%;
+} */
+/* PC用メニューリスト(ulタグで作成) */
+.pc-menu > ul {
+  /* メニュー項目を横並びにするのでflex */
+  display: flex;
+  /* リスト項目の先頭に付く・を消す */
+  list-style: none;
+  /* 要素を中央に配置 */
+  align-items: center;
+  justify-content: center;
+  /* マージンをリセット */
+  margin: 0;
+  padding: 0;
+}
+/* PC用メニュー項目 */
+.pc-menu > ul > li {
+  /* 文字は水平方方向中央寄せ */
+  text-align: center;
+  /* 文字サイズ */
+  font-size: 16px;
+  /* この例では6個なので100%/6の16.6667% */
+  width: 16.6667%;
+}
+/* PC用メニューリンク */
+.pc-menu > ul > li > a {
+  /* マージンをリセット */
+  margin: 0;
+  padding: 0;
+  position:fixed;
+  top: 0;
+  display: flex;
+  height: 60px;
+  width: 16.6667%;
+  text-decoration: none;
+  color: #ffffff;  
+  background-color: #3584bb; 
+  /* 要素を中央に配置 */
+  align-items: center;
+  justify-content: center;
+}
+/*----------------ドロップダウン-----------------*/
+.dropdown__lists {
+  display: none;/*デフォルトでは非表示の状態にしておく*/
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  left: 0;
+}
+.gnavi__list:hover .dropdown__lists {
+  display: block;/*Gナビメニューにホバーしたら表示*/
+}
+.dropdown__list {
+  background-color: #004d80;
+  height: 60px;
+  transition: all .3s;
+  position: relative;
+}
+.dropdown__list:not(:first-child)::before{
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #3492d1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.dropdown__list:hover {
+  background-color: #003558;
+}
+.dropdown__list > a {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  position: relative; */
+  display: block; /* ブロック要素に変更 */
+  background-color: #3492d1;
+  color: #fff;
+  /* text-decoration: none; */
+  list-style: none;
+  position: relative;
+  padding: 15px 20px; /* 適切なパディングを追加 */
+  box-sizing: border-box; /* パディングが要素のサイズに含まれるように */
+}
+
+.dropdown__list > a::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  transform: rotate(135deg);
+  position: absolute;
+  right: 15px;
+  /* top: calc(50% - 5px); */
+  top: 50%;
+  transform: translateY(-50%); /* 垂直方向中央揃え */
+}
+.gnavi__list{
+  /* 文字は水平方方向中央寄せ */
+text-align: center;
+/* 文字サイズ */
+font-size: 16px;
+/* この例では6個なので100%/6の16.6667% */
+width: 16.6667%;
+}
+.gnavi__list a {
+  /* display: flex;
+  width: 16.6667%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  background-color: #3584bb;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  padding: 15px 20px; 
+  box-sizing: border-box;  */
+  /* マージンをリセット */
+margin: 0;
+padding: 0;
+position:fixed;
+top: 0;
+display: flex;
+height: 60px;
+width: 16.6667%;
+text-decoration: none;
+color: #ffffff;  
+background-color: #3584bb; 
+/* 要素を中央に配置 */
+align-items: center;
+justify-content: center;
+}
+
+/* .gnavi__list a::before {
+  content: '';
+  display: block;
+  width: 16.6667%;
+  height: 60px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  transform: rotate(135deg);
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+} */
+
+/* メニュータイトルにマウスが乗った時のスタイル */
+.gnavi__list:hover a::before {
+  background-color: #555555; ; /* メニュータイトルにホバーした時の斜め線の色を変更 */
+}
+.gnavi__lists{
+
+/* メニュー項目を横並びにするのでflex */
+display: flex;
+/* リスト項目の先頭に付く・を消す */
+list-style: none;
+/* 要素を中央に配置 */
+align-items: center;
+justify-content: center;
+/* マージンをリセット */
+margin: 0;
+padding: 0;
+margin-left: -8px;
+}
+
+
+/* ------ここからウィンドウが小さくなったとき用のやつ---------- */
+/* ハンバーガーボタンを押してチェックがONの時だけ
+   スマホ用メニューを画面左端に移動する */
+   #sp-menu__check:checked ~ .sp-menu__content {
+    left: 0;
+  }
+  /* 変更箇所はコメントの項目のみ */
+  .sp-menu__content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+  
+    /* 普段は画面外にするために左端を画面右端の位置にする */
+    left: 100%;
+  
+    z-index: 90;
+    background-color: #3584bb;
+    /* background-color: transparent; */
+
+    /* 右端からゆっくり移動するように表示 */
+    transition: all 0.5s;
+    /* transition: left 0.5s ease; */
+  }
+  
+  /* .main-menu {
+    margin: 0 auto;
+    display: flex;
+    width: 1280px;
+  } */
+ 
+  .sp-menu__box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    height: 60px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: #3584bb;
+    /* background: #1b1b1b; */
+  }
+  .sp-menu__box span,
+  .sp-menu__box span:before,
+  .sp-menu__box span:after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 25px;
+    border-radius: 3px;
+    background: #ffffff;
+    /* background: #242323; */
+    position: absolute;
+  }
+  .sp-menu__box span:before {
+    bottom: 8px;
+  }
+  .sp-menu__box span:after {
+    top: 8px;
+  }
+  #sp-menu__check {
+    display: none;
+  }
+  #sp-menu__check:checked ~ .sp-menu__box span {
+    background: rgba(255, 255, 255, 0);
+  }
+  #sp-menu__check:checked ~ .sp-menu__box span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+  }
+  #sp-menu__check:checked ~ .sp-menu__box span::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+  .sp-menu__list {
+    padding: 70px 10px 0;
+  }
+  .sp-menu__item {
+    border-bottom: solid 1px #ffffff;
+    list-style: none;
+  }
+  .sp-menu__link {
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    box-sizing: border-box;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 9px 15px 10px 0;
+  }
+  

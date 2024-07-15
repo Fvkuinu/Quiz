@@ -14,6 +14,6 @@
   </head>
   <body>
       <h2>ログアウトしました</h2>
-      <p><a href="../home.php">ホームに戻る</a></p>
+      <p><a href="../home.php" class="btn-partial-line"><i class="fa fa-caret-right"></i> ホームに戻る</a></p>
   </body>
 </html>

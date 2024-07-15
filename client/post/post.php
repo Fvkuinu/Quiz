@@ -22,15 +22,15 @@ date_default_timezone_set("Asia/Tokyo");
 <body>
     <?php include('../../header.php'); ?>
 
-    <h2>問題を作成</h2>
+    <h1>POST</h1>
     <p>
     <form action="post_submit.php" method="get">
-        問題文<br>
+        <h3>問題文</h3><br>
         <textarea name="question" rows="10" cols="40" required></textarea><br>
-        答え<br>
-        <input type="text" name="answer" size="40" required><br>
+        <h3>答え</h3><br>
+        <input type="text" name="answer" size="35" required><br>
 
-        <input type="submit" value="送信">
+        <input type="submit" value="送信" class="btn-square">
     </form>
     </p>
 

@@ -33,11 +33,25 @@ try {
     $stmt->execute();
 
     // 完了メッセージの表示、またはリダイレクト
-    echo "問題が削除されました。";
+    echo "<h2>問題が削除されました。</h2>";
     // header('Location: 問題一覧ページへのURL'); // 完了後に問題一覧ページにリダイレクトする場合
 
 } catch (PDOException $e) {
-    echo 'エラー: ' . $e->getMessage();
+    echo '<div id=error>エラー。</div>' . $e->getMessage();
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>コンテスト問題削除</title>
+    <link rel="stylesheet" href="../..//CSS/style.css">
+</head>
+
+<body>
+    <a href="edit_contest.php" class="btn-partial-line"><i class="fa fa-caret-right"></i>コンテスト一覧へ戻る</a>
+</body>
+
+</html>

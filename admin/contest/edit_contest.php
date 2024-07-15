@@ -20,12 +20,13 @@ date_default_timezone_set("Asia/Tokyo");
 <head>
     <meta charset="utf-8">
     <title>admin_panel</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="../..//CSS/style.css">
 </head>
 
 <body>
     <?php include('../admin_header.php'); ?>
-    <p><a href="add_contest.php">Add Contest</a></p>
+    <h1>EDIT CONTEST</h1>
+    <a href="add_contest.php" class='btn-square'>Add Contest</a>
     <?php
     // データベース接続情報
     $pdo = new PDO("sqlite:../../SQL/quiz.sqlite");
@@ -48,14 +49,14 @@ date_default_timezone_set("Asia/Tokyo");
 
         // コンテストの表示
         foreach ($contests as $contest) {
-            echo "<div>\n";
-            echo "<h2>" . h($contest['name']) . "</h2>\n";
+            echo "<div class='box26'>\n";
+            echo "<span class='box-title'>" . h($contest['name']) . "</span>\n";
             echo "<p>" . h($contest['description']) . "</p>\n";
             // 編集と削除と問題作成リンク
-            echo "<a href='modify_contest.php?id=" . $contest['id'] . "'>Modify</a> | ";
-            echo "<a href='delete_contest.php?id={$contest['id']}' onclick='return confirmDelete()'>Delete</a> | ";
-            echo "<a href='add_contest_question.php?id=" . $contest['id'] . "'>Add Question</a> | ";
-            echo "<a href='edit_contest_question.php?id=" . $contest['id'] . "'>Edit Question</a>";
+            echo "<a class='btn-square' href='modify_contest.php?id=" . $contest['id'] . "'>Modify</a> | ";
+            echo "<a class='btn-square'  href='delete_contest.php?id={$contest['id']}' onclick='return confirmDelete()'>Delete</a> | ";
+            echo "<a class='btn-square'  href='add_contest_question.php?id=" . $contest['id'] . "'>Add Question</a> | ";
+            echo "<a class='btn-square'  href='edit_contest_question.php?id=" . $contest['id'] . "'>Edit Question</a>";
             echo "</div>\n";
         }
 

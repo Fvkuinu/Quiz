@@ -24,21 +24,16 @@ $data = $st->fetchAll();
 <?php
 include 'header.php';
 ?>
-
-
+  <h1>INFORMATION</h1>
   <?php
   foreach($data as $info) {
-    print '<div>';
-    print '<p>投稿日:'.h($info["created_at"]);
-    print '<h2>'.h($info["title"]).'</h2>';
+    print '<div class="box26">';
+    print '<span class="box-title">'.h($info["title"]).'</span>';
     print '<p>'.h($info["content"]).'</p>';
-    print '<p>最終更新日:'.h($info["updated_at"]);
+    print '<p>最終更新日:'.h($info["updated_at"]);   
+    print '<p>投稿日:'.h($info["created_at"]);
     print '</div>';
   }
-  ?>
-  <p>
-    <a href="./client/information/show_information.php">お知らせ一覧</a>
-  </p>
+  ?>  
 </body>
-
 </html>

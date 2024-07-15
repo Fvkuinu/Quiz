@@ -34,16 +34,16 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 
         if ($count > 0) {
             // ユーザー名が既に存在する場合
-            echo "このユーザー名は既に存在します";
-            echo "<p><a href='register_form.html'>ユーザー登録画面へ</a></p>";
-            echo "<p><a href='login_form.html'>ログイン画面へ</a></p>";
+            echo "<h2>このユーザー名は既に存在します</h2>";
+            echo "<p><a href='register_form.html' class='btn-partial-line'><i class='fa fa-caret-right'></i> ユーザー登録画面へ</a></p>";
+            echo "<p><a href='login_form.html' class='btn-partial-line'><i class='fa fa-caret-right'></i> ログイン画面へ</a></p>";
         } else {
             // 新しいユーザーを登録
             $stmt = $pdo->prepare("INSERT INTO user (username, password, rating) VALUES (?, ?, ?)");
             $stmt->execute([$username, $password, 0]);
 
-            echo "登録されました";
-            echo "<p><a href='login_form.html'>ログイン画面へ</a></p>";
+            echo "<h2>登録されました</h2>";
+            echo "<p><a href='login_form.html' class='btn-partial-line'><i class='fa fa-caret-right'></i> ログイン画面へ</a></p>";
         }
     }
     ?>

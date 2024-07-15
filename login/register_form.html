@@ -4,10 +4,12 @@
 <head>
   <meta charset="utf-8">
   <title>ユーザー登録</title>
-  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="../CSS/style.css">
  
 </head>
 <body>
+    
+    <div id="login">
     <h2>ユーザー登録</h2>
     <form action="register_user.php" method="post">
         <p>
@@ -19,10 +21,11 @@
             <input type="password" name="password" id="password" required>
         </p>
         <p>
-            <input type="submit" value="登録">
+            <input type="submit" value="登録" class="btn-square">
         </p>
     </form>
-    <p><a href='login_form.html'>ログイン画面へ</a></p>
-    <p><a href='login_form.html'>ホームへ</a></p>
+    </div>
+    <p><a href='login_form.html' class="btn-partial-line"><i class="fa fa-caret-right"></i>ログイン画面へ</a></p>
+    <p><a href='login_form.html' class="btn-partial-line"><i class="fa fa-caret-right"></i>ホームへ</a></p>
 </body>
 </html>

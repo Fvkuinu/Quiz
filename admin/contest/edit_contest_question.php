@@ -43,16 +43,16 @@ try {
         $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         include '../admin_header.php';
-
+        echo "<h1>EDIT QUIZ</h1>";
         // 問題の表示
         foreach ($questions as $question) {
-            echo "<div>\n";
-            echo "<h2>" . h($question['question_title']) . "</h2>\n";
+            echo "<div class='box26'>\n";
+            echo "<span class='box-title'>" . h($question['question_title']) . "</span>\n";
             echo "<p>番号: " . h($question['question_order']) . "</p>\n";
             echo "<p>点数: " . h($question['point']) . "</p>\n";
             // 削除リンク
-            echo "<a href='delete_contest_question.php?question_id=" . $question['id'] . "' onclick='return confirmDelete()'>Delete</a> | ";
-            echo "<a href='modify_contest_question.php?question_id=" . $question['id'] . "'>Modify</a>";
+            echo "<a class='btn-square' href='delete_contest_question.php?question_id=" . $question['id'] . "' onclick='return confirmDelete()'>Delete</a> | ";
+            echo "<a class='btn-square' href='modify_contest_question.php?question_id=" . $question['id'] . "'>Modify</a>";
             echo "</div>\n";
         }
 
@@ -62,7 +62,7 @@ try {
             echo "<a href='?contest_id=" . $contest_id . "&page=" . $i . "'>" . $i . "</a> ";
         }
     } else {
-        echo '<p>問題が存在しません</p>';
+        echo '<div id=error>問題が存在しません</div><a href="edit_contest.php">コンテスト一覧へ戻る</a>';
     }
 
 
@@ -75,3 +75,16 @@ try {
         return confirm("本当に削除しますか？");
     }
 </script>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>コンテスト問題編集</title>
+    <link rel="stylesheet" href="../..//CSS/style.css">
+</head>
+
+<body></body>
+
+</html>

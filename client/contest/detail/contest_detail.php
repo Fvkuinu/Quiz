@@ -46,3 +46,16 @@ try {
     echo "エラー: " . $e->getMessage();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>コンテスト一覧</title>
+    <link rel="stylesheet" href="../../..//CSS/style.css">
+</head>
+
+<body></body>
+
+</html>

@@ -63,22 +63,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <?php include('../admin_header.php'); ?>
-    <h1>問題の編集</h1>
+    <h1>MODIFY QUIZ</h1>
     <form method="post">
-        <input type="hidden" name="contest_id" value="<?php echo h($question['contest_id']); ?>">
-        <div>
-            <label for="question_title">問題タイトル:</label>
-            <input type="text" id="question_title" name="question_title" value="<?php echo isset($question['question_title']) ? h($question['question_title']) : ''; ?>">
-        </div>
-        <div>
-            <label for="point">得点:</label>
-            <input type="number" id="point" name="point" value="<?php echo isset($question['point']) ? h($question['point']) : ''; ?>">
-        </div>
-        <div>
-            <label for="correct_answer">正解:</label>
-            <input type="text" id="correct_answer" name="correct_answer" value="<?php echo isset($question['correct_answer']) ? h($question['correct_answer']) : ''; ?>">
-        </div>
-        <button type="submit">更新</button>
+        <input type="hidden" name="contest_id" value="<?php echo h($question['contest_id']); ?>" required>
+            <h3>問題タイトル</h3>
+            <input type="text" id="question_title" name="question_title" value="<?php echo isset($question['question_title']) ? h($question['question_title']) : ''; ?>"required>
+
+            <h3>得点</h3>
+            <input type="number" id="point" name="point" value="<?php echo isset($question['point']) ? h($question['point']) : ''; ?>" required>
+
+            <h3>正解</h3>
+            <input type="text" id="correct_answer" name="correct_answer" value="<?php echo isset($question['correct_answer']) ? h($question['correct_answer']) : ''; ?>" required><br>
+        <button type="submit" class="btn-square">更新</button>
     </form>
 </body>
 </html>

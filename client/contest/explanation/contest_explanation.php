@@ -36,7 +36,7 @@ try {
     include '../contest_header.php';
 
     // 問題ファイルのパス
-    $question_file = "../../../contest_question/{$contest_id}_{$contest_name}/explanation/explanation_{$question_order}.php";
+    $question_file = "../../../contest_question/{$contest_id}_{$contest_name}/answer/explanation_{$question_order}.html";
 
     // 問題のHTMLファイルを読み込む
     if (file_exists($question_file)) {
@@ -48,3 +48,16 @@ try {
     echo "エラー: " . $e->getMessage();
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>コンテスト解説</title>
+    <link rel="stylesheet" href="../../..//CSS/style.css">
+</head>
+
+<body>
+</body>
+
+</html>

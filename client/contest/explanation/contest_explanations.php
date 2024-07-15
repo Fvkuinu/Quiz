@@ -39,6 +39,7 @@ try {
 
 <head>
     <title>コンテスト解説</title>
+    <link rel="stylesheet" href="../../..//CSS/style.css">
 </head>
 
 <body>

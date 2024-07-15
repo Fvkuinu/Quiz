@@ -4,24 +4,27 @@
 <head>
   <meta charset="utf-8">
   <title>Login form</title>
-  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="../CSS/style.css">
  
 </head>
 
 <body>
-
-  <div>
+  <h1>LOGIN</h1>
+  <div id="login">
     <h2>ユーザー名とパスワードを入力してください</h2>
     <p>
     <form action="login_submit.php" method="get">
       • ユーザ名
-      <input type="text" name="username"><br>
+      <input type="text" name="username" required><br>
       • パスワード
-      <input type="password" name="passwd">
-      <input type="submit" value="送信">
+      <input type="password" name="passwd" required><br>
+      <input type="submit" value="送信" class="btn-square">
     </form>
     </p>
   </div>
+  
+  <p><a href='register_form.html' class="btn-partial-line"><i class="fa fa-caret-right"></i>新規登録</a></p>
+  <p><a href='/Quiz/home.php' class="btn-partial-line"><i class="fa fa-caret-right"></i>ホームへ戻る</a></p>
 
 </body>
 
